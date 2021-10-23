@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add Yekan font */
+@layer base {
+  @font-face {
+    font-family: Yekan;
+    font-weight: 400;
+    src: url('../fonts/Yekan.ttf') format("woff");
+  }
+  @font-face {
+    font-family: Yekan;
+    font-weight: 500;
+    src: url('../fonts/Yekan.ttf') format("woff");
+  }
+}
