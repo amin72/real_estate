@@ -57,7 +57,7 @@
 
     <!-- phone number -->
     <div class="mt-1 tracking-wide flex items-center mx-auto">
-      <span class="pl-1">09389370123</span>
+      <span class="pl-1">09301234567</span>
       <svg class="w-5 h-5 fill-current" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20" xml:space="preserve">
         <path d="M11.229,11.229c-1.583,1.582-3.417,3.096-4.142,2.371c-1.037-1.037-1.677-1.941-3.965-0.102
 	        c-2.287,1.838-0.53,3.064,0.475,4.068c1.16,1.16,5.484,0.062,9.758-4.211c4.273-4.274,5.368-8.598,4.207-9.758
@@ -114,6 +114,16 @@
 
     </div>
   </footer>
+
+  <script src="{{ asset('js/app.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+      $("#menu_button").click(function() {
+        $("#menu").toggleClass('hidden');
+      })
+    })
+  </script>
+
 
   @yield('bottom_scripts')
 </body>
