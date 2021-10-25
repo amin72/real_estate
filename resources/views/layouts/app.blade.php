@@ -78,9 +78,9 @@
       </div>
 
       <div id="menu" class="hidden px-2 pt-2 md:flex md:py-0 mt-12 md:mt-0 transition-all duration-500 ease-in-out">
-        <a href="#" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 md:mt-0 hover:text-gray-200">خانه</a>
-        <a href="#" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 mt-2 md:mt-0 hover:text-gray-200">درباره ما</a>
-        <a href="#" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 mt-2 md:mt-0 hover:text-gray-200">مشاهده املاک</a>
+        <a href="{{ route('pages.index') }}" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 md:mt-0 hover:text-gray-200">خانه</a>
+        <a href="{{ route('pages.about') }}" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 mt-2 md:mt-0 hover:text-gray-200">درباره ما</a>
+        <a href="{{ route('listings.index') }}" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 mt-2 md:mt-0 hover:text-gray-200">مشاهده املاک</a>
         @if ($user = Auth::user())
           <a href="#" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 mt-2 md:mt-0 hover:bg-gray-200">داشبورد</a>
           <form action="" method="POST">
@@ -92,14 +92,14 @@
           </form>
         @endif
         @if(Auth::guest())
-          <a href="#" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 mt-2 md:mt-0 hover:text-gray-200">ورود</a>
-          <a href="#" class="tracking-wide block py-2 rounded leading-tight font-semibold md:flex-shrink-0 mt-2 md:mt-0 hover:text-gray-200">ثبت نام</a>
+          <a href="{{ route('login') }}" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 mt-2 md:mt-0 hover:text-gray-200">ورود</a>
+          <a href="{{ route('register') }}" class="tracking-wide block py-2 rounded leading-tight font-semibold md:flex-shrink-0 mt-2 md:mt-0 hover:text-gray-200">ثبت نام</a>
         @endif
       </div>
     </div>
     
     <div class="">
-      <a class="" href="#">
+      <a class="" href="{{ route('pages.index') }}">
         <img class="h-12" src="{{ asset('img/logo.png') }}" alt="">
       </a>
     </div>
