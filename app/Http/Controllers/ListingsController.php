@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Listing;
+
 
 class ListingsController extends Controller
 {
@@ -13,7 +15,11 @@ class ListingsController extends Controller
      */
     public function index()
     {
-        return view('listings.index');
+        $listings = Listing::where('is_published', true)->orderBy('created_at')->paginate(12);
+        
+        return view('listings.index', [
+            'listings' => $listings
+        ]);
     }
 
     /**
@@ -23,7 +29,24 @@ class ListingsController extends Controller
      */
     public function create()
     {
-        //
+        return view('listings.form')->with([
+            'listing' => '',
+            'page_title' => 'افزودن ملک',
+            'listing_title' => '',
+            'listing_description' => '',
+            'listing_price' => '',
+            'listing_address' => '',
+            'listing_city' => '',
+            'listing_zipcode' => '',
+            'listing_bedrooms' => '',
+            'listing_has_store' => '',
+            'listing_has_garage' => '',
+            'listing_sqft' => '',
+            'image_required' => true,
+            'action' => 'POST',
+        ]);
+        // 'image', 'image_1', 'image_2', 'image_3',
+        // 'image_4', 'image_5', 'image_6'
     }
 
     /**
@@ -34,7 +57,7 @@ class ListingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd("store");
     }
 
     /**
@@ -45,7 +68,7 @@ class ListingsController extends Controller
      */
     public function show($id)
     {
-        //
+        dd("show");
     }
 
     /**
@@ -56,7 +79,7 @@ class ListingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd("edit");
     }
 
     /**
@@ -68,7 +91,7 @@ class ListingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd("update");
     }
 
     /**
@@ -79,11 +102,13 @@ class ListingsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd("destroy");
     }
+
 
     public function search()
     {
-        return view('listings.index');
+        $listings = [];
+        return view('listings.index', ['listings' => $listings]);
     }
 }

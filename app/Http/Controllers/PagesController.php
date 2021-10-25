@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Listing;
+
 
 class PagesController extends Controller
 {
@@ -13,10 +15,10 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $estates = [];
+        $listings = Listing::where('is_published', true)->orderBy('created_at')->take(12)->get();
         
         return view('pages.index', [
-            'estates' => $estates
+            'listings' => $listings
         ]);
     }
 

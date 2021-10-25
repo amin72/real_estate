@@ -22,10 +22,25 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $phones = [
+            '09381234560',
+            '09381234561',
+            '09381234562',
+            '09381234563',
+            '09381234564',
+            '09381234565',
+            '09381234566',
+            '09381234500',
+            '09381234568',
+            '09381234569',
+            '09381234507',
+            '09381234527',
+            '09381234537',
+        ];
+
         return [
             'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'phone' => $phones[rand() % 12],
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];

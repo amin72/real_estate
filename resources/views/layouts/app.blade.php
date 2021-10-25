@@ -82,6 +82,7 @@
         <a href="{{ route('pages.about') }}" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 mt-2 md:mt-0 hover:text-gray-200">درباره ما</a>
         <a href="{{ route('listings.index') }}" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 mt-2 md:mt-0 hover:text-gray-200">مشاهده املاک</a>
         @if ($user = Auth::user())
+          <a href="{{ route('listings.create') }}" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 mt-2 md:mt-0 hover:text-gray-200">افزدون ملک</a>
           <a href="{{ route('dashboard.index') }}" class="tracking-wide block md:pl-4 py-2 rounded leading-tight font-semibold md:flex-shrink-0 md:mt-0 hover:text-gray-200">پنل کاربری</a>
           <form action="{{ route('logout') }}" method="POST">
             @csrf
