@@ -6,7 +6,7 @@
 <div class="w-full xl:w-1/2 mx-auto border-2 border-gray-200 rounded bg-white">
     <h1 class="text-3xl text-white bg-primary py-4 px-42 tracking-wide text-center">ثبت نام</h1>
 
-    <form method="POST" action="{{ route('login') }}" class="px-6 py-10">
+    <form method="POST" action="{{ route('register') }}" class="px-6 py-10">
       @csrf
       
       <!-- Name -->
