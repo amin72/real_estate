@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 
+@section('styles')
+<link href="{{ asset('css/lightbox.min.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <section class="bg-green-600 opacity-80 text-white px-8 sm:px-40 xl:px-96 py-16 text-center">
   <h1 class="text-5xl">{{ $listing->title }}</h1>
@@ -8,8 +12,30 @@
 </section>
 
 <main class="px-8 sm:px-40 xl:px-96 my-10">
-  <img src="{{ $listing->image }}" alt="">
+  <img src="{{ $listing->image }}" alt="" class="rounded">
   <!-- load images -->
+
+  <!-- Thumbnails -->
+  <div class="flex flex-row flex-wrap">
+    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ $listing->image_1 }}" data-lightbox="home-image-set">
+      <img class="h-16 rounded" src="{{ $listing->image_1 }}" alt="">
+    </a>
+    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ $listing->image_2 }}" data-lightbox="home-image-set" class="mr-6">
+      <img class="h-16 rounded" src="{{ $listing->image_2 }}" alt="">
+    </a>
+    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ $listing->image_3 }}" data-lightbox="home-image-set" class="mr-6">
+      <img class="h-16 rounded" src="{{ $listing->image_3 }}" alt="">
+    </a>
+    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ $listing->image_4 }}" data-lightbox="home-image-set" class="mr-6">
+      <img class="h-16 rounded" src="{{ $listing->image_4 }}" alt="">
+    </a>
+    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ $listing->image_5 }}" data-lightbox="home-image-set" class="mr-6">
+      <img class="h-16 rounded" src="{{ $listing->image_5 }}" alt="">
+    </a>
+    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ $listing->image_6 }}" data-lightbox="home-image-set" class="mr-6">
+      <img class="h-16 rounded" src="{{ $listing->image_6 }}" alt="">
+    </a>
+  </div>
 
   <div class="text-green-400 my-10 flex flex-col md:flex-row flex-wrap justify-around">
 
@@ -165,5 +191,9 @@
     <p class="text-lg mt-2 text-justify text-gray-800 leading-10">{{ $listing->description }}</p>
   </div>
 </main>
+@endsection
 
+
+@section('bottom_scripts')
+<script src="{{ asset('js/lightbox.min.js') }}"></script>
 @endsection

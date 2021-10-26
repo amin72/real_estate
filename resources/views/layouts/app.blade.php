@@ -7,7 +7,8 @@
   <title>املاک</title>
 
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+  
+  @yield('styles')
 </head>
 <body dir="rtl" class="bg-gray-50 font-yekan text-gray-900">
   <section class="flex flex-col lg:flex-row justify-content-center text-center lg:justify-between sm:px-10 md:px-20 xl:px-40 py-4">
