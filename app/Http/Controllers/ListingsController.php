@@ -15,7 +15,7 @@ class ListingsController extends Controller
      */
     public function index()
     {
-        $listings = Listing::where('is_published', true)->orderBy('created_at')->paginate(12);
+        $listings = Listing::where('published', true)->orderBy('created_at')->paginate(12);
         
         return view('listings.index', [
             'listings' => $listings
@@ -68,7 +68,8 @@ class ListingsController extends Controller
      */
     public function show($id)
     {
-        dd("show");
+        $listing = Listing::findOrFail($id);
+        return view('listings.show', ['listing' => $listing]);
     }
 
     /**

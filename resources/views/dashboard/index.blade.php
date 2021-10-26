@@ -47,8 +47,7 @@
             name="name"
             value="{{ old('name') }}"
             class="block mt-1 w-full rounded"
-            required
-            autofocus />
+            required />
         </div>
 
         <div class="mt-4">

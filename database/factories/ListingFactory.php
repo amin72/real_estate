@@ -23,8 +23,10 @@ class ListingFactory extends Factory
     {
         return [
             'user_id' => \App\Models\User::all()->random(),
+            'category_id' => \App\Models\Category::all()->random(),
+            'type_id' => \App\Models\Type::all()->random(),
             'title' => $this->faker->word(),
-            'address' => $this->faker->text($maxNbChars=250),
+            'address' => $this->faker->text($maxNbChars=200),
             'city' => 'اهواز',
             'zipcode' => '1122334455',
             'description' => $this->faker->paragraph(30),
@@ -33,7 +35,7 @@ class ListingFactory extends Factory
             'has_store' => true,
             'has_garage' => true,
             'sqft' => $this->faker->numberBetween(100, 1500),
-            'is_published' => true,
+            'published' => true,
             'image' => 'http://localhost:8888/homes/home-1.jpg',
             'image_1' => 'http://localhost:8888/homes/home-2.jpg',
             'image_2' => 'http://localhost:8888/homes/home-3.jpg',

@@ -15,7 +15,7 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $listings = Listing::where('is_published', true)->orderBy('created_at')->take(12)->get();
+        $listings = Listing::where('published', true)->orderBy('created_at')->take(12)->get();
         
         return view('pages.index', [
             'listings' => $listings

@@ -19,8 +19,14 @@ class CreateListingsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->string('title', 200);
-            $table->string('address', 300);
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
+
+            $table->unsignedBigInteger('type_id');
+            $table->foreign('type_id')->references('id')->on('types');
+
+            $table->string('title', 100);
+            $table->string('address', 200);
             $table->string('city', 100);
             $table->string('zipcode', 20);
             $table->text('description')->nullable();
@@ -29,8 +35,8 @@ class CreateListingsTable extends Migration
             $table->boolean('has_store');
             $table->boolean('has_garage');
             $table->unsignedInteger('sqft');
-            $table->boolean('is_published')->default(false);
-
+            $table->boolean('published')->default(false);
+            
             $table->string('image');
             $table->string('image_1')->nullable();
             $table->string('image_2')->nullable();
