@@ -36,13 +36,13 @@ class ListingFactory extends Factory
             'has_garage' => true,
             'sqft' => $this->faker->numberBetween(100, 1500),
             'published' => true,
-            'image' => 'http://localhost:8888/homes/home-1.jpg',
-            'image_1' => 'http://localhost:8888/homes/home-2.jpg',
-            'image_2' => 'http://localhost:8888/homes/home-3.jpg',
-            'image_3' => 'http://localhost:8888/homes/home-4.jpg',
-            'image_4' => 'http://localhost:8888/homes/home-5.jpg',
-            'image_5' => 'http://localhost:8888/homes/home-6.jpg',
-            'image_6' => 'http://localhost:8888/homes/home-inside-1.jpg',
+            'image' => 'img/homes/home-1.jpg',
+            'image_1' => 'img/homes/home-2.jpg',
+            'image_2' => 'img/homes/home-3.jpg',
+            'image_3' => 'img/homes/home-4.jpg',
+            'image_4' => 'img/homes/home-5.jpg',
+            'image_5' => 'img/homes/home-6.jpg',
+            'image_6' => 'img/homes/home-inside-1.jpg',
         ];
     }
 }

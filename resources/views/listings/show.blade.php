@@ -12,28 +12,28 @@
 </section>
 
 <main class="px-8 sm:px-40 xl:px-96 my-10">
-  <img src="{{ $listing->image }}" alt="" class="rounded">
+  <img src="{{ asset($listing->image) }}" alt="" class="rounded">
   <!-- load images -->
 
   <!-- Thumbnails -->
   <div class="flex flex-row flex-wrap">
-    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ $listing->image_1 }}" data-lightbox="home-image-set">
-      <img class="h-16 rounded" src="{{ $listing->image_1 }}" alt="">
+    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_1) }}" data-lightbox="home-image-set">
+      <img class="h-16 rounded" src="{{ asset($listing->image_1) }}" alt="">
     </a>
-    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ $listing->image_2 }}" data-lightbox="home-image-set" class="mr-6">
-      <img class="h-16 rounded" src="{{ $listing->image_2 }}" alt="">
+    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_2) }}" data-lightbox="home-image-set" class="mr-6">
+      <img class="h-16 rounded" src="{{ asset($listing->image_2) }}" alt="">
     </a>
-    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ $listing->image_3 }}" data-lightbox="home-image-set" class="mr-6">
-      <img class="h-16 rounded" src="{{ $listing->image_3 }}" alt="">
+    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_3) }}" data-lightbox="home-image-set" class="mr-6">
+      <img class="h-16 rounded" src="{{ asset($listing->image_3) }}" alt="">
     </a>
-    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ $listing->image_4 }}" data-lightbox="home-image-set" class="mr-6">
-      <img class="h-16 rounded" src="{{ $listing->image_4 }}" alt="">
+    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_4) }}" data-lightbox="home-image-set" class="mr-6">
+      <img class="h-16 rounded" src="{{ asset($listing->image_4) }}" alt="">
     </a>
-    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ $listing->image_5 }}" data-lightbox="home-image-set" class="mr-6">
-      <img class="h-16 rounded" src="{{ $listing->image_5 }}" alt="">
+    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_5) }}" data-lightbox="home-image-set" class="mr-6">
+      <img class="h-16 rounded" src="{{ asset($listing->image_5) }}" alt="">
     </a>
-    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ $listing->image_6 }}" data-lightbox="home-image-set" class="mr-6">
-      <img class="h-16 rounded" src="{{ $listing->image_6 }}" alt="">
+    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_6) }}" data-lightbox="home-image-set" class="mr-6">
+      <img class="h-16 rounded" src="{{ asset($listing->image_6) }}" alt="">
     </a>
   </div>
 
