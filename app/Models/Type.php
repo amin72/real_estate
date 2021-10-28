@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Type extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
 
     public $fillable = ['name', 'slug', 'published'];
