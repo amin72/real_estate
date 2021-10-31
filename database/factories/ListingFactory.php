@@ -22,9 +22,9 @@ class ListingFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => \App\Models\User::all()->random(),
-            'category_id' => \App\Models\Category::all()->random(),
-            'type_id' => \App\Models\Type::all()->random(),
+            'user_id' => \App\Models\User::all()->random()->id,
+            'category_id' => \App\Models\Category::all()->random()->id,
+            'type_id' => \App\Models\Type::all()->random()->id,
             'title' => $this->faker->word(),
             'address' => $this->faker->text($maxNbChars=200),
             'city' => 'اهواز',

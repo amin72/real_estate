@@ -36,11 +36,21 @@ class UserFactory extends Factory
             '09381234507',
             '09381234527',
             '09381234537',
+            '09381234547',
+            '09381234557',
+            '09381234567',
+            '09381234577',
+            '09381234587',
+            '09381234597',
+            '09381234437',
+            '09381234337',
+            '09381234237',
+            '09381234137',
         ];
 
         return [
             'name' => $this->faker->name(),
-            'phone' => $phones[rand() % 12],
+            'phone' => $phones[rand() % 22],
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];
