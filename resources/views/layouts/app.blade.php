@@ -118,14 +118,20 @@
   </footer>
 
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/main.js') }}"></script>
+  
   <script>
     $(document).ready(function() {
       $("#menu_button").click(function() {
         $("#menu").toggleClass('hidden');
       })
     })
-  </script>
 
+    $(".change_price").text(function() {
+      var element = $(this).eq(0)
+      formatElementPrice(element)
+    })
+  </script>
 
   @yield('bottom_scripts')
 </body>

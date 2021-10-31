@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use App\Http\Requests\ListingRequest;
 
 
 class ListingsController extends Controller
@@ -15,7 +16,8 @@ class ListingsController extends Controller
      */
     public function index()
     {
-        $listings = Listing::where('published', true)->orderBy('created_at')->paginate(12);
+        $listings = Listing::where('published', true)
+            ->orderBy('created_at')->paginate(12);
         
         return view('listings.index', [
             'listings' => $listings
@@ -55,9 +57,57 @@ class ListingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ListingRequest $request)
     {
-        dd("store");
+        $listing = Listing::create($request->all());
+        $disk = 'public';
+
+        $image = $request->file('image');
+        $filename = time() . '.' . $image->getClientOriginalExtension();
+        $filename_thumb = time() . '_small.' . $image->getClientOriginalExtension();
+        $path = 'listings/' . $filename;
+        $path2 = 'listings/' . $filename_thumb;
+
+        $img = \Image::make($image->getRealPath());
+        $thumb = \Image::make($image->getRealPath())
+            ->encode('jpg', 90)
+            ->resize(300, 300, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+        \Storage::disk($disk)->put($path, $img->stream(), 'public');
+        \Storage::disk($disk)->put($path2, $thumb->stream(), 'public');
+
+        $listing->image = 'storage/' . $path;
+        $listing->save();
+
+        $image_fields = ['image_1', 'image_2', 'image_3', 'image_4', 'image_5', 'image_6'];
+    
+        foreach ($image_fields as $image_field) {
+            $extra_image = $request->{$image_field};
+            if ($extra_image) {
+                $filename = time() . '_' . $image_field . '.' . $extra_image->getClientOriginalExtension();
+                $filename_thumb = time() . '_' . $image_field . '_small.' . $extra_image->getClientOriginalExtension();
+
+                $path = 'listings/' . $filename;
+                $path2 = 'listings/' . $filename_thumb;
+        
+                $extra_img = \Image::make($extra_image->getRealPath());
+                $thumb = \Image::make($extra_image->getRealPath())
+                    ->encode('jpg', 90)
+                    ->resize(300, 300, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+
+                \Storage::disk($disk)->put($path, $extra_img->stream(), 'public');
+                \Storage::disk($disk)->put($path2, $thumb->stream(), 'public');
+
+                $listing->{$image_field} = 'storage/' . $path;
+                $listing->save();
+            }
+        }
+
+        return redirect(route('pages.index'));
     }
 
     /**

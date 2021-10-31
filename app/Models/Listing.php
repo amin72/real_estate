@@ -10,12 +10,18 @@ class Listing extends Model
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
 
-    public $fillable = ['title', 'address', 'city', 'zipcode',
-        'description', 'price', 'bedrooms', 'has_store', 'has_garage',
-        'sqft', 'published', 'image', 'image_1', 'image_2', 'image_3',
-        'image_4', 'image_5', 'image_6'
+    public $fillable = ['user_id', 'category_id', 'type_id',
+        'title', 'address', 'city', 'zipcode', 'description', 'price',
+        'bedrooms', 'has_store', 'has_garage', 'sqft', 'published',
+        'image', 'image_1', 'image_2', 'image_3', 'image_4', 'image_5'
     ];
 
+    protected static function booted()
+    {
+        static::creating(function ($obj) {
+            $obj->user_id = \Auth::id();
+        });
+    }
 
     public function category() {
         return $this->belongsTo(\App\Models\Category::class);
@@ -31,29 +37,45 @@ class Listing extends Model
         return str_replace('.', '_small.', $this->image);
     }
 
+
+    public function getThumbnail($image_field) {
+        $image_fields = ['image', 'image_1', 'image_2', 'image_3', 'image_4', 'image_5', 'image_6'];
+
+        if (in_array($image_field, $image_fields)) {
+            $path = $this->{$image_field};
+            if ($path) {
+                $info = pathinfo($path);
+                return $info['dirname'] . '/' . $info['filename'] . '_small.' . $info['extension'];
+            }
+        }
+
+        return null;
+    }
+
+
     public function setImageAttribute($value)
     {
         $attribute_name = 'image';
         // $attribute_name2 = 'small_image';
         $disk = 'public'; // use Backpack's root disk; or your own
         $destination_path = 'listings/';
-
+        
         // if a base64 was sent, store it in the db
         if (\Str::startsWith($value, 'data:image')) {
             // 0. Make the image
             $image = \Image::make($value)->encode('jpg', 90);
-            $image2 = \Image::make($value)->encode('jpg', 90)
-                ->resize(300, 300, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
+            // $image2 = \Image::make($value)->encode('jpg', 90)
+            //     ->resize(300, 300, function ($constraint) {
+            //         $constraint->aspectRatio();
+            //     });
 
             // 1. Generate a filename.
             $filename = md5($value.time()) . '.jpg';
-            $filename2 = md5($value.time()) . '_small.jpg';
+            // $filename2 = md5($value.time()) . '_small.jpg';
 
             // 2. Store the image on disk.
             \Storage::disk($disk)->put($destination_path . $filename, $image->stream());
-            \Storage::disk($disk)->put($destination_path . $filename2, $image2->stream());
+            // \Storage::disk($disk)->put($destination_path . $filename2, $image2->stream());
 
             // 3. Delete the previous image, if there was one.
             \Storage::disk($disk)->delete($this->{$attribute_name});
@@ -70,5 +92,4 @@ class Listing extends Model
             // $this->attributes[$attribute_name2] = str_replace('.', '_small.', $value);
         }
     }
-
 }
