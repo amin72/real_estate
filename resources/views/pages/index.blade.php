@@ -56,7 +56,7 @@
         <div class="flex flex-col relative bg-white border-2">
           <img class="w-full" src="{{ asset($listing->image) }}" alt="">
           <div class="absolute pt-4 pr-2 inset-0 z-10">
-            <span class="tracking-widest bg-green-400 p-2 rounded text-white text-sm cursor-default">{{ $listing->price }} تومان</span>
+            <span class="change_price tracking-widest bg-green-400 p-2 rounded text-white text-sm cursor-default">{{ $listing->price }} تومان</span>
           </div>
           <div class="flex-auto p-4 text-green-400 z-20">
             <div class="text-center">
@@ -103,7 +103,7 @@
               <svg class="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-1-7.59V4h2v5.59l3.95 3.95-1.41 1.41L9 10.41z"/>
               </svg>
-              <span class="mr-1">تاریخ: {{ $listing->created_at->format('Y-m-d') }}</span>
+              <span class="mr-1">تاریخ: {{ \Morilog\Jalali\CalendarUtils::strftime('Y/m/d', strtotime($listing->created_at->format('Y-m-d'))) }}</span>
               
             </div>
             <hr>

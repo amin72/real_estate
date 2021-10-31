@@ -9,7 +9,7 @@
         <div class="flex flex-col relative bg-white border-2">
           <img class="w-full" src="{{ asset($listing->image) }}" alt="">
           <div class="absolute pt-4 pr-2 inset-0 z-10">
-            <span class="tracking-widest bg-green-400 p-2 rounded text-white text-sm cursor-default">{{ $listing->price }} تومان</span>
+            <span class="change_price tracking-widest bg-green-400 p-2 rounded text-white text-sm cursor-default">{{ $listing->price }} تومان</span>
           </div>
           <div class="flex-auto p-4 text-green-400 z-20">
             <div class="text-center">
