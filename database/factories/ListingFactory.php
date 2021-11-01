@@ -22,9 +22,9 @@ class ListingFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => \App\Models\User::all()->random()->id,
-            'category_id' => \App\Models\Category::all()->random()->id,
-            'type_id' => \App\Models\Type::all()->random()->id,
+            'user_id' => \App\Models\User::all()->random(),
+            'category_id' => \App\Models\Category::all()->random(),
+            'type_id' => \App\Models\Type::all()->random(),
             'title' => $this->faker->word(),
             'address' => $this->faker->text($maxNbChars=200),
             'city' => 'اهواز',
@@ -34,8 +34,10 @@ class ListingFactory extends Factory
             'bedrooms' => $this->faker->numberBetween(1, 15),
             'has_store' => true,
             'has_garage' => true,
-            'sqft' => $this->faker->numberBetween(100, 1500),
+            'area' => $this->faker->numberBetween(100, 1500),
             'published' => true,
+            'phone_number' => '09' . random_int(0, 9) . random_int(0, 9) . random_int(0, 9) . random_int(0, 9) . random_int(0, 9) . random_int(0, 9) . random_int(0, 9) . random_int(0, 9) . random_int(0, 9),
+            'agent_name' => 'رضا رضایی',
             'image' => 'img/homes/home-1.jpg',
             'image_1' => 'img/homes/home-2.jpg',
             'image_2' => 'img/homes/home-3.jpg',

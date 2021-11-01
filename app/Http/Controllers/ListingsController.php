@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Listing;
-use App\Http\Requests\ListingRequest;
+use App\Http\Requests\ListingUserRequest;
 
 
 class ListingsController extends Controller
@@ -43,7 +43,7 @@ class ListingsController extends Controller
             'listing_bedrooms' => '',
             'listing_has_store' => '',
             'listing_has_garage' => '',
-            'listing_sqft' => '',
+            'listing_area' => '',
             'image_required' => true,
             'action' => 'POST',
         ]);
@@ -57,9 +57,15 @@ class ListingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ListingRequest $request)
+    public function store(ListingUserRequest $request)
     {
-        $listing = Listing::create($request->all());
+        $listing = Listing::create($request->only([
+            'category_id', 'type_id', 'title', 'address',
+            'city', 'zipcode', 'description', 'price', 'bedrooms',
+            'has_store', 'has_garage', 'area', 'phone_number', 'image',
+            'image_1', 'image_2', 'image_3', 'image_4', 'image_5'
+        ]));
+
         $disk = 'public';
 
         $image = $request->file('image');

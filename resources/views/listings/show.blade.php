@@ -67,7 +67,7 @@
       </div>
     </div>
 
-    <!-- sqft -->
+    <!-- area -->
     <div class="w-full md:w-1/2 mx-auto px-4">
       <div class="border-b flex flex-row justify-between py-2 px-4">
         <div class="flex flex-row items-center">
@@ -77,7 +77,7 @@
           <span class="mr-1">متراژ:</span>
         </div>
         <div class="">
-          <span class="ml-1 tracking-widest">{{ $listing->sqft }}</span>
+          <span class="ml-1 tracking-widest">{{ $listing->area }}</span>
           مترمربع
         </div>
       </div>
@@ -148,7 +148,7 @@
       </div>
     </div>
 
-    <!-- bedrooms -->
+    <!-- category -->
     <div class="w-full md:w-1/2 mx-auto px-4">
       <div class="border-b flex flex-row justify-between py-2 px-4">
         <div class="flex flex-row items-center">
@@ -172,7 +172,7 @@
       </div>
     </div>
 
-    <!-- bedrooms -->
+    <!-- type -->
     <div class="w-full md:w-1/2 mx-auto px-4">
       <div class="border-b flex flex-row justify-between py-2 px-4">
         <div class="flex flex-row items-center">
@@ -196,6 +196,35 @@
       </div>
     </div>
 
+    <!-- agent name -->
+    <div class="w-full md:w-1/2 mx-auto px-4">
+      <div class="border-b flex flex-row justify-between py-2 px-4">
+        <div class="flex flex-row items-center">
+          <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z"/>
+          </svg>
+          <span class="mr-1">متصدی:</span>
+        </div>
+        <div class="">
+          <span>{{ $listing->agent_name }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- agent name -->
+    <div class="w-full md:w-1/2 mx-auto px-4">
+      <div class="border-b flex flex-row justify-between py-2 px-4">
+        <div class="flex flex-row items-center">
+          <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z"/>
+          </svg>
+          <span class="mr-1">متصدی:</span>
+        </div>
+        <div class="">
+          <span>{{ $listing->agent_name }}</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="my-10">

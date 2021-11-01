@@ -43,7 +43,8 @@ class ListingCrudController extends CrudController
 
         CRUD::column('title')->type('text');
         CRUD::column('city');
-        CRUD::column('price');
+        CRUD::column('agent_name');
+        CRUD::column('phone_number');
         CRUD::column('published')->type('boolean');
 
         /**
@@ -73,8 +74,9 @@ class ListingCrudController extends CrudController
         CRUD::field('bedrooms')->type('number');
         CRUD::field('has_store');
         CRUD::field('has_garage');
-        CRUD::field('sqft')->type('number');
+        CRUD::field('area')->type('number');
         CRUD::field('published')->type('boolean');
+        CRUD::field('agent_name')->default('');
         CRUD::field('image')->type('image');
         CRUD::field('image_1')->type('image');
         CRUD::field('image_2')->type('image');

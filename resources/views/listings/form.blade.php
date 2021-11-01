@@ -80,12 +80,12 @@
             required />
         </div>
 
-        <!-- Sqft -->
+        <!-- Area -->
         <div class="mt-4">
-          <label for="sqft">متراژ</label>
+          <label for="area">متراژ</label>
           <input
             type="number"
-            name="sqft"
+            name="area"
             class="block mt-1 w-full rounded"
             required />
         </div>
@@ -178,6 +178,16 @@
           <textarea
             name="description"
             class="block mt-1 w-full rounded" rows="5"></textarea>
+        </div>
+
+        <!-- Phone number -->
+        <div class="mt-4">
+          <label for="area">شماره تلفن</label>
+          <input
+            type="text"
+            name="phone_number"
+            class="block mt-1 w-full rounded"
+            required />
         </div>
 
         <!-- image -->

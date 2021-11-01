@@ -34,7 +34,7 @@ class CreateListingsTable extends Migration
             $table->unsignedTinyInteger('bedrooms');
             $table->boolean('has_store');
             $table->boolean('has_garage');
-            $table->unsignedInteger('sqft');
+            $table->unsignedInteger('area');
             $table->boolean('published')->default(false);
             
             $table->string('image');
@@ -46,6 +46,7 @@ class CreateListingsTable extends Migration
             $table->string('image_6')->nullable();
             
             $table->string('agent_name')->default('');
+            $table->string('phone_number', 11);
 
             $table->timestamps();
         });
