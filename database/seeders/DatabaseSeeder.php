@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryTableSeeder::class);
         $this->call(TypeTableSeeder::class);
         
-        \App\Models\Listing::unsetEventDispatcher();
-        \App\Models\Listing::factory(20)->create();
+        // \App\Models\Listing::unsetEventDispatcher();
+        // \App\Models\Listing::factory(20)->create();
     }
 }

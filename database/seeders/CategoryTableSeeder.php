@@ -32,5 +32,11 @@ class CategoryTableSeeder extends Seeder
             'slug' => 'رهن',
             'published' => true
         ]);
+
+        Category::create([
+            'name' => 'معاوضه',
+            'slug' => 'معاوضه',
+            'published' => true
+        ]);
     }
 }
