@@ -28,7 +28,6 @@ class ListingRequest extends FormRequest
         return [
             'title' => 'required|max:100',
             'address' => 'required|max:200',
-            'city' => 'required|max:100',
             'zipcode' => 'required|max:20',
             'price' => 'required',
             'bedrooms' => 'required',

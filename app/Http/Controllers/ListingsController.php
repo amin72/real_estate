@@ -38,7 +38,6 @@ class ListingsController extends Controller
             'listing_description' => '',
             'listing_price' => '',
             'listing_address' => '',
-            'listing_city' => '',
             'listing_zipcode' => '',
             'listing_bedrooms' => '',
             'listing_has_store' => '',
@@ -61,8 +60,8 @@ class ListingsController extends Controller
     {
         $listing = Listing::create($request->only([
             'category_id', 'type_id', 'title', 'address',
-            'city', 'zipcode', 'description', 'price', 'bedrooms',
-            'has_store', 'has_garage', 'area', 'phone_number', 'image',
+            'zipcode', 'description', 'price', 'bedrooms',
+            'has_store', 'has_garage', 'area', 'phone', 'image',
             'image_1', 'image_2', 'image_3', 'image_4', 'image_5'
         ]));
 

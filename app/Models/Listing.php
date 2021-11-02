@@ -11,8 +11,8 @@ class Listing extends Model
     use HasFactory;
 
     protected $fillable = ['category_id', 'type_id', 'title', 'address',
-        'city', 'zipcode', 'description', 'price', 'bedrooms', 'has_store',
-        'has_garage', 'area', 'published', 'phone_number', 'agent_name',
+        'zipcode', 'description', 'price', 'bedrooms', 'has_store',
+        'has_garage', 'area', 'published', 'phone', 'agent_name',
         'image', 'image_1', 'image_2', 'image_3', 'image_4', 'image_5'
     ];
 

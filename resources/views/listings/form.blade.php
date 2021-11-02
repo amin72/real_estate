@@ -26,18 +26,14 @@
             class="block mt-1 w-full rounded"
             required
             autofocus />
+
+            @error('title')
+              @if ($message == 'The title must not be greater than 30 characters.')
+                @include('partials.error_message', ['message' => 'عنوان آگهی حداکثر می تواند ۳۰ کاراکتر باشد.'])
+              @endif
+            @enderror
         </div>
         
-        <!-- City -->
-        <div class="mt-4">
-          <label for="city">شهر</label>
-          <input
-            type="text"
-            name="city"
-            class="block mt-1 w-full rounded"
-            required />
-        </div>
-
         <!-- Address -->
         <div class="mt-4">
           <label for="address">آدرس</label>
@@ -46,6 +42,13 @@
             name="address"
             class="block mt-1 w-full rounded"
             required />
+
+            @error('address')
+              @if ($message == 'The address must not be greater than 200 characters.')
+                @include('partials.error_message', ['message' => 'آدرس حداکثر می تواند ۲۰۰ کاراکتر باشد.'])
+              @endif
+            @enderror
+
         </div>
 
         <!-- Zipcode -->
@@ -55,6 +58,8 @@
             type="text"
             name="zipcode"
             class="block mt-1 w-full rounded"
+            minlength="10"
+            maxlength="10"
             required />
         </div>
 
@@ -154,7 +159,7 @@
           @enderror
         </div>
 
-        <!-- Categories -->
+        <!-- Types -->
         <div class="block mt-6">
           <span>نوع ملک</span>
           <div>
@@ -182,15 +187,23 @@
 
         <!-- Phone number -->
         <div class="mt-4">
-          <label for="area">شماره تلفن</label>
+          <label for="phone">شماره تلفن</label>
           <input
             type="text"
-            name="phone_number"
+            name="phone"
             class="block mt-1 w-full rounded"
+            minlength="11"
+            maxlength="11"
             required />
+
+          @error('phone')
+            @if ($message == 'The phone format is invalid.')
+              @include('partials.error_message', ['message' => 'شماره تلفن را صحیح وارد کنید. مثال: 09301234567'])
+            @endif
+          @enderror
         </div>
 
-        <!-- image -->
+        <!-- Image -->
         <div class="mt-6">
           <label class="w-64 flex flex-col items-center px-4 py-6 bg-white rounded-md shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-primary hover:text-white text-primary ease-linear transition-all duration-150">
             <svg class="h-6 w-6 fill-current" viewBox="0 0 2048 1792" xmlns="http://www.w3.org/2000/svg">
@@ -202,6 +215,7 @@
           </label>
         </div>
 
+        <!-- Extra images -->
         <div class="flex flex-wrap space-between">
           <!-- image_1 -->
           <div class="mt-6 w-1/2 sm:w-1/3 lg:w-1/6 xl:w-1/3">

@@ -19,6 +19,15 @@
           class="block mt-1 w-full rounded"
           required
           autofocus />
+
+          @error('name')
+            <span class="block mt-2 text-red-600">
+              {{
+                $message == 'The name must not be greater than 40 characters.'
+                  ? 'مقدار وارد شده طولانی است. حداکثر طول می تواند ۴۰ کاراکتر باشد.' : ''
+              }}
+            </span>
+          @enderror
       </div>
 
       <div class="mt-4">
@@ -28,8 +37,16 @@
           name="phone"
           value="{{ old('phone') }}"
           class="block mt-1 w-full rounded"
+          minlength="11"
+          maxlength="11"
           required
           autofocus />
+
+          @error('phone')
+            @if ($message == 'The phone format is invalid.')
+              @include('partials.error_message', ['message' => 'شماره تلفن را صحیح وارد کنید. مثال: 09301234567'])
+            @endif
+          @enderror
       </div>
       
       <!-- Password -->
@@ -41,6 +58,17 @@
           class="block mt-1 w-full rounded"
           required
           autocomplete="current-password" />
+
+          @error('password')
+            @if ($message == 'The password confirmation does not match.')
+              @include('partials.error_message', ['message' => 'رمز عبورهای وارد شده برابر نیستند.'])
+            @endif
+
+            @if ($message == 'The password must be at least 8 characters.')
+              @include('partials.error_message', ['message' => 'رمزهای وارد شده بسیار کوتاه است. حداقل طول باید ۸ کاراکتر باشد.'])
+            @endif
+          @enderror
+          
       </div>
 
       <!-- Confirm Password -->

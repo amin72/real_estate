@@ -25,10 +25,9 @@ class CreateListingsTable extends Migration
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('types');
 
-            $table->string('title', 50);
+            $table->string('title', 30);
             $table->string('address', 200);
-            $table->string('city', 50);
-            $table->string('zipcode', 20);
+            $table->string('zipcode', 10);
             $table->text('description')->nullable();
             $table->unsignedBigInteger('price');
             $table->unsignedTinyInteger('bedrooms');
@@ -45,8 +44,8 @@ class CreateListingsTable extends Migration
             $table->string('image_5')->nullable();
             $table->string('image_6')->nullable();
             
-            $table->string('agent_name')->default('');
-            $table->string('phone_number', 11);
+            $table->string('agent_name', 40)->default('');
+            $table->string('phone', 11);
 
             $table->timestamps();
         });

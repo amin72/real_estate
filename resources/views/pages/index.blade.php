@@ -60,8 +60,11 @@
           </div>
           <div class="flex-auto p-4 text-green-400 z-20">
             <div class="text-center">
-              <h4 class="text-xl font-semibold text-primary">{{ $listing->title }}</h4>
-              <p class="text-gray-700 mt-1 mb-4 text-lg">{{ Str::substr($listing->address, 0, 20) }}</p>
+              <h4 class="text-xl font-bold text-primary">{{ $listing->title }}</h4>
+              <p class="text-gray-700 mt-1 mb-4 text-lg">
+                {{ Str::substr($listing->address, 0, 32) }}
+                {{ strlen($listing->address) > 32 ? '...' : ''}}
+              </p>
             </div>
             <hr>
             <div class="flex flex-wrap py-2 mt-4">

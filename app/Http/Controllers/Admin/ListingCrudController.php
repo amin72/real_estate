@@ -42,9 +42,8 @@ class ListingCrudController extends CrudController
         $this->crud->removeButton('create');
 
         CRUD::column('title')->type('text');
-        CRUD::column('city');
         CRUD::column('agent_name');
-        CRUD::column('phone_number');
+        CRUD::column('phone');
         CRUD::column('published')->type('boolean');
 
         /**
@@ -67,7 +66,6 @@ class ListingCrudController extends CrudController
 
         CRUD::field('title');
         CRUD::field('address');
-        CRUD::field('city');
         CRUD::field('zipcode');
         CRUD::field('description');
         CRUD::field('price')->type('number');

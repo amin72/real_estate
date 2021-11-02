@@ -24,16 +24,15 @@ class ListingUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:100',
+            'title' => 'required|max:30',
             'address' => 'required|max:200',
-            'city' => 'required|max:100',
-            'zipcode' => 'required|max:20',
-            'price' => 'required',
-            'bedrooms' => 'required',
-            'bedrooms' => 'required',
-            'has_store' => 'required',
-            'has_garage' => 'required',
-            'area' => 'required',
+            'zipcode' => 'required|max:10',
+            'price' => 'required|integer',
+            'bedrooms' => 'required|integer',
+            'has_store' => 'required|boolean',
+            'has_garage' => 'required|boolean',
+            'area' => 'required|integer',
+            'phone' => 'required|regex:/09[0-9]{9}/',
             'image' => 'required',
         ];
     }
