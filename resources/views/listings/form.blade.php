@@ -1,11 +1,6 @@
 @extends('layouts.app')
 
 
-@section('bottom_scripts')
-<script src="{{ asset('js/main.js') }}"></script>
-@endsection
-
-
 @section('content')
   <main class="sm:px-4 xl:px-32 mt-10">
     <div class="w-full xl:w-1/2 mx-auto border-2 border-gray-200 rounded bg-white">
@@ -25,7 +20,24 @@
             value="{{ old('title') }}"
             class="block mt-1 w-full rounded"
             required
-            autofocus />
+            autofocus>
+
+            @error('title')
+              @if ($message == 'The title must not be greater than 30 characters.')
+                @include('partials.error_message', ['message' => 'عنوان آگهی حداکثر می تواند ۳۰ کاراکتر باشد.'])
+              @endif
+            @enderror
+        </div>
+        
+        <!-- zone -->
+        <div class="mt-4">
+          <label for="zone">نام منطقه</label>
+          <input
+            type="text"
+            name="zone"
+            value="{{ old('zone') }}"
+            class="block mt-1 w-full rounded"
+            required>
 
             @error('title')
               @if ($message == 'The title must not be greater than 30 characters.')
@@ -41,7 +53,7 @@
             type="text"
             name="address"
             class="block mt-1 w-full rounded"
-            required />
+            required>
 
             @error('address')
               @if ($message == 'The address must not be greater than 200 characters.')
@@ -60,7 +72,7 @@
             class="block mt-1 w-full rounded"
             minlength="10"
             maxlength="10"
-            required />
+            required>
         </div>
 
         <!-- Price -->
@@ -72,7 +84,7 @@
             name="price"
             class="block mt-1 w-full rounded tracking-widest"
             onkeyup="formatInputPrice(this)"
-            required />
+            required>
         </div>
 
         <!-- Bedrooms -->
@@ -82,7 +94,7 @@
             type="number"
             name="bedrooms"
             class="block mt-1 w-full rounded"
-            required />
+            required>
         </div>
 
         <!-- Area -->
@@ -92,7 +104,7 @@
             type="number"
             name="area"
             class="block mt-1 w-full rounded"
-            required />
+            required>
         </div>
 
         <!-- Has store -->
@@ -153,7 +165,7 @@
             </select>
           </div>
           @error('category_id')
-            <div class="mt-2 text-red-600">
+            <div id="image_1" class="mt-2 text-red-600">
               {{ $message }}
             </div>
           @enderror
@@ -194,7 +206,7 @@
             class="block mt-1 w-full rounded"
             minlength="11"
             maxlength="11"
-            required />
+            required>
 
           @error('phone')
             @if ($message == 'The phone format is invalid.')
@@ -203,15 +215,37 @@
           @enderror
         </div>
 
-        <!-- Image -->
+        <!-- Requested -->
+        <div class="mt-4">
+          <label for="requested" class="inline-flex items-center">
+            <input
+              type="checkbox"
+              name="requested"
+              class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border border-indigo-400 p-2">
+            <span class="mr-2 text-sm text-gray-600">درخواستی</span>
+          </label>
+        </div>
+
+        <!-- Exchange -->
+        <div class="mt-4">
+          <label for="exchange" class="inline-flex items-center">
+            <input
+              type="checkbox"
+              name="exchange"
+              class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border border-indigo-400 p-2">
+            <span class="mr-2 text-sm text-gray-600">معاوضه ملک</span>
+          </label>
+        </div>
+
+      <!-- Image -->
         <div class="mt-6">
           <label class="w-64 flex flex-col items-center px-4 py-6 bg-white rounded-md shadow-md tracking-wide uppercase border border-blue cursor-pointer hover:bg-primary hover:text-white text-primary ease-linear transition-all duration-150">
             <svg class="h-6 w-6 fill-current" viewBox="0 0 2048 1792" xmlns="http://www.w3.org/2000/svg">
               <path d="M1344 864q0-14-9-23l-352-352q-9-9-23-9t-23 9l-351 351q-10 12-10 24 0 14 9 23t23 9h224v352q0 13 9.5 22.5t22.5 9.5h192q13 0 22.5-9.5t9.5-22.5v-352h224q13 0 22.5-9.5t9.5-22.5zm640 288q0 159-112.5 271.5t-271.5 112.5h-1088q-185 0-316.5-131.5t-131.5-316.5q0-130 70-240t188-165q-2-30-2-43 0-212 150-362t362-150q156 0 285.5 87t188.5 231q71-62 166-62 106 0 181 75t75 181q0 76-41 138 130 31 213.5 135.5t83.5 238.5z"/>
             </svg>
             
-            <span class="mt-2 text-base leading-normal">تصویر اصلی</span>
-            <input type="file" name="image" class="hidden" accept="image/*" required />
+            <span id="image_name" class="mt-2 text-sm leading-normal">تصویر اصلی</span>
+            <input id="image" type="file" name="image" class="hidden" accept="image/*" required />
           </label>
         </div>
 
@@ -224,8 +258,8 @@
                 <path d="M1344 864q0-14-9-23l-352-352q-9-9-23-9t-23 9l-351 351q-10 12-10 24 0 14 9 23t23 9h224v352q0 13 9.5 22.5t22.5 9.5h192q13 0 22.5-9.5t9.5-22.5v-352h224q13 0 22.5-9.5t9.5-22.5zm640 288q0 159-112.5 271.5t-271.5 112.5h-1088q-185 0-316.5-131.5t-131.5-316.5q0-130 70-240t188-165q-2-30-2-43 0-212 150-362t362-150q156 0 285.5 87t188.5 231q71-62 166-62 106 0 181 75t75 181q0 76-41 138 130 31 213.5 135.5t83.5 238.5z"/>
               </svg>
               
-              <span class="mt-2 text-base leading-normal">افزودن تصویر</span>
-              <input type="file" name="image_1" class="hidden" accept="image/*"/>
+              <span id="image_1_name" class="mt-2 text-sm leading-normal">افزودن تصویر</span>
+              <input id="image_1" type="file" name="image_1" class="hidden" accept="image/*"/>
             </label>
           </div>
 
@@ -236,8 +270,8 @@
                 <path d="M1344 864q0-14-9-23l-352-352q-9-9-23-9t-23 9l-351 351q-10 12-10 24 0 14 9 23t23 9h224v352q0 13 9.5 22.5t22.5 9.5h192q13 0 22.5-9.5t9.5-22.5v-352h224q13 0 22.5-9.5t9.5-22.5zm640 288q0 159-112.5 271.5t-271.5 112.5h-1088q-185 0-316.5-131.5t-131.5-316.5q0-130 70-240t188-165q-2-30-2-43 0-212 150-362t362-150q156 0 285.5 87t188.5 231q71-62 166-62 106 0 181 75t75 181q0 76-41 138 130 31 213.5 135.5t83.5 238.5z"/>
               </svg>
               
-              <span class="mt-2 text-base leading-normal">افزودن تصویر</span>
-              <input type="file" name="image_2" class="hidden" accept="image/*"/>
+              <span id="image_2_name" class="mt-2 text-sm leading-normal">افزودن تصویر</span>
+              <input id="image_2" type="file" name="image_2" class="hidden" accept="image/*"/>
             </label>
           </div>
 
@@ -248,8 +282,8 @@
                 <path d="M1344 864q0-14-9-23l-352-352q-9-9-23-9t-23 9l-351 351q-10 12-10 24 0 14 9 23t23 9h224v352q0 13 9.5 22.5t22.5 9.5h192q13 0 22.5-9.5t9.5-22.5v-352h224q13 0 22.5-9.5t9.5-22.5zm640 288q0 159-112.5 271.5t-271.5 112.5h-1088q-185 0-316.5-131.5t-131.5-316.5q0-130 70-240t188-165q-2-30-2-43 0-212 150-362t362-150q156 0 285.5 87t188.5 231q71-62 166-62 106 0 181 75t75 181q0 76-41 138 130 31 213.5 135.5t83.5 238.5z"/>
               </svg>
               
-              <span class="mt-2 text-base leading-normal">افزودن تصویر</span>
-              <input type="file" name="image_3" class="hidden" accept="image/*"/>
+              <span id="image_3_name" class="mt-2 text-sm leading-normal">افزودن تصویر</span>
+              <input id="image_3" type="file" name="image_3" class="hidden" accept="image/*"/>
             </label>
           </div>
 
@@ -260,8 +294,8 @@
                 <path d="M1344 864q0-14-9-23l-352-352q-9-9-23-9t-23 9l-351 351q-10 12-10 24 0 14 9 23t23 9h224v352q0 13 9.5 22.5t22.5 9.5h192q13 0 22.5-9.5t9.5-22.5v-352h224q13 0 22.5-9.5t9.5-22.5zm640 288q0 159-112.5 271.5t-271.5 112.5h-1088q-185 0-316.5-131.5t-131.5-316.5q0-130 70-240t188-165q-2-30-2-43 0-212 150-362t362-150q156 0 285.5 87t188.5 231q71-62 166-62 106 0 181 75t75 181q0 76-41 138 130 31 213.5 135.5t83.5 238.5z"/>
               </svg>
               
-              <span class="mt-2 text-base leading-normal">افزودن تصویر</span>
-              <input type="file" name="image_4" class="hidden" accept="image/*"/>
+              <span id="image_4_name" class="mt-2 text-sm leading-normal">افزودن تصویر</span>
+              <input id="image_4" type="file" name="image_4" class="hidden" accept="image/*"/>
             </label>
           </div>
 
@@ -272,8 +306,8 @@
                 <path d="M1344 864q0-14-9-23l-352-352q-9-9-23-9t-23 9l-351 351q-10 12-10 24 0 14 9 23t23 9h224v352q0 13 9.5 22.5t22.5 9.5h192q13 0 22.5-9.5t9.5-22.5v-352h224q13 0 22.5-9.5t9.5-22.5zm640 288q0 159-112.5 271.5t-271.5 112.5h-1088q-185 0-316.5-131.5t-131.5-316.5q0-130 70-240t188-165q-2-30-2-43 0-212 150-362t362-150q156 0 285.5 87t188.5 231q71-62 166-62 106 0 181 75t75 181q0 76-41 138 130 31 213.5 135.5t83.5 238.5z"/>
               </svg>
               
-              <span class="mt-2 text-base leading-normal">افزودن تصویر</span>
-              <input type="file" name="image_5" class="hidden" accept="image/*"/>
+              <span id="image_5_name" class="mt-2 text-sm leading-normal">افزودن تصویر</span>
+              <input id="image_5" type="file" name="image_5" class="hidden" accept="image/*"/>
             </label>
           </div>
 
@@ -284,8 +318,8 @@
                 <path d="M1344 864q0-14-9-23l-352-352q-9-9-23-9t-23 9l-351 351q-10 12-10 24 0 14 9 23t23 9h224v352q0 13 9.5 22.5t22.5 9.5h192q13 0 22.5-9.5t9.5-22.5v-352h224q13 0 22.5-9.5t9.5-22.5zm640 288q0 159-112.5 271.5t-271.5 112.5h-1088q-185 0-316.5-131.5t-131.5-316.5q0-130 70-240t188-165q-2-30-2-43 0-212 150-362t362-150q156 0 285.5 87t188.5 231q71-62 166-62 106 0 181 75t75 181q0 76-41 138 130 31 213.5 135.5t83.5 238.5z"/>
               </svg>
               
-              <span class="mt-2 text-base leading-normal">افزودن تصویر</span>
-              <input type="file" name="image_6" class="hidden" accept="image/*"/>
+              <span id="image_6_name" class="mt-2 text-sm leading-normal">افزودن تصویر</span>
+              <input id="image_6" type="file" name="image_6" class="hidden" accept="image/*"/>
             </label>
           </div>
         </div>
@@ -305,5 +339,33 @@
   <script>
     // format price field
     formatInputPrice($("#price")[0])
+
+    $("#image").change(function() {
+      $("#image_name").text(this.files[0].name)
+    });
+
+    $("#image_1").change(function() {
+      $("#image_1_name").text(this.files[0].name)
+    });
+
+    $("#image_2").change(function() {
+      $("#image_2_name").text(this.files[0].name)
+    });
+
+    $("#image_3").change(function() {
+      $("#image_3_name").text(this.files[0].name)
+    });
+
+    $("#image_4").change(function() {
+      $("#image_4_name").text(this.files[0].name)
+    });
+
+    $("#image_5").change(function() {
+      $("#image_5_name").text(this.files[0].name)
+    });
+
+    $("#image_6").change(function() {
+      $("#image_6_name").text(this.files[0].name)
+    });
   </script>
 @endsection

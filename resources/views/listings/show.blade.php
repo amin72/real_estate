@@ -23,29 +23,29 @@
       </a>
     @endif
     @if ($listing->image_2)
-    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_2) }}" data-lightbox="home-image-set" class="mr-6">
-      <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_2') }}" alt="">
-    </a>
+      <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_2) }}" data-lightbox="home-image-set" class="mr-6">
+        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_2') }}" alt="">
+      </a>
     @endif
     @if ($listing->image_3)
-    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_3) }}" data-lightbox="home-image-set" class="mr-6">
-      <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_3') }}" alt="">
-    </a>
+      <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_3) }}" data-lightbox="home-image-set" class="mr-6">
+        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_3') }}" alt="">
+      </a>
     @endif
     @if ($listing->image_4)
-    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_4) }}" data-lightbox="home-image-set" class="mr-6">
-      <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_4') }}" alt="">
-    </a>
+      <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_4) }}" data-lightbox="home-image-set" class="mr-6">
+        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_4') }}" alt="">
+      </a>
     @endif
     @if ($listing->image_5)
-    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_5) }}" data-lightbox="home-image-set" class="mr-6">
-      <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_5') }}" alt="">
-    </a>
+      <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_5) }}" data-lightbox="home-image-set" class="mr-6">
+        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_5') }}" alt="">
+      </a>
     @endif
     @if ($listing->image_6)
-    <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_6) }}" data-lightbox="home-image-set" class="mr-6">
-      <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_6') }}" alt="">
-    </a>
+      <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_6) }}" data-lightbox="home-image-set" class="mr-6">
+        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_6') }}" alt="">
+      </a>
     @endif
   </div>
 

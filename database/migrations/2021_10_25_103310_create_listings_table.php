@@ -26,6 +26,7 @@ class CreateListingsTable extends Migration
             $table->foreign('type_id')->references('id')->on('types');
 
             $table->string('title', 30);
+            $table->string('zone', 30);
             $table->string('address', 200);
             $table->string('zipcode', 10);
             $table->text('description')->nullable();
@@ -34,7 +35,9 @@ class CreateListingsTable extends Migration
             $table->boolean('has_store');
             $table->boolean('has_garage');
             $table->unsignedInteger('area');
-            $table->boolean('published')->default(false);
+            $table->string('phone', 11);
+            $table->boolean('requested')->default(false);
+            $table->boolean('exchange')->default(false);
             
             $table->string('image');
             $table->string('image_1')->nullable();
@@ -43,9 +46,10 @@ class CreateListingsTable extends Migration
             $table->string('image_4')->nullable();
             $table->string('image_5')->nullable();
             $table->string('image_6')->nullable();
-            
+
+            // only visible for admin
             $table->string('agent_name', 40)->default('');
-            $table->string('phone', 11);
+            $table->boolean('published')->default(false);
 
             $table->timestamps();
         });

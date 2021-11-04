@@ -67,6 +67,7 @@ class ListingCrudController extends CrudController
         CRUD::field('title');
         CRUD::field('address');
         CRUD::field('zipcode');
+        CRUD::field('zone');
         CRUD::field('description');
         CRUD::field('price')->type('number');
         CRUD::field('bedrooms')->type('number');
@@ -74,7 +75,10 @@ class ListingCrudController extends CrudController
         CRUD::field('has_garage');
         CRUD::field('area')->type('number');
         CRUD::field('published')->type('boolean');
-        CRUD::field('agent_name')->default('');
+        CRUD::field('agent_name');
+        CRUD::field('requested')->type('boolean');
+        CRUD::field('exchange')->type('boolean');
+
         CRUD::field('image')->type('image');
         CRUD::field('image_1')->type('image');
         CRUD::field('image_2')->type('image');

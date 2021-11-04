@@ -10,9 +10,9 @@ class Listing extends Model
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
 
-    protected $fillable = ['category_id', 'type_id', 'title', 'address',
-        'zipcode', 'description', 'price', 'bedrooms', 'has_store',
-        'has_garage', 'area', 'published', 'phone', 'agent_name',
+    protected $fillable = ['category_id', 'type_id', 'title', 'address', 'zone',
+        'zipcode', 'description', 'price', 'bedrooms', 'has_store', 'has_garage',
+        'area', 'published', 'phone', 'agent_name', 'exchange', 'requested',
         'image', 'image_1', 'image_2', 'image_3', 'image_4', 'image_5'
     ];
 

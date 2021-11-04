@@ -59,11 +59,14 @@ class ListingsController extends Controller
     public function store(ListingUserRequest $request)
     {
         $listing = Listing::create($request->only([
-            'category_id', 'type_id', 'title', 'address',
-            'zipcode', 'description', 'price', 'bedrooms',
-            'has_store', 'has_garage', 'area', 'phone', 'image',
-            'image_1', 'image_2', 'image_3', 'image_4', 'image_5'
+            'category_id', 'type_id', 'title', 'address', 'zipcode', 'zone',
+            'description', 'price', 'bedrooms', 'area', 'has_store',
+            'has_garage', 'phone', 'image',
+            'image_1', 'image_2', 'image_3', 'image_4', 'image_5',
         ]));
+
+        $listing->requested = $request->requested == 'on';
+        $listing->exchange = $request->exchange == 'on';
 
         $disk = 'public';
 
