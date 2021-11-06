@@ -33,7 +33,7 @@ class ListingUserRequest extends FormRequest
             'has_garage' => 'required|boolean',
             'area' => 'required|integer',
             'phone' => 'required|regex:/09[0-9]{9}/',
-            'image' => 'required',
+            'image' => 'required_unless:requested,on',
         ];
     }
 }

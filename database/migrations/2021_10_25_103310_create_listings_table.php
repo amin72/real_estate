@@ -39,7 +39,7 @@ class CreateListingsTable extends Migration
             $table->boolean('requested')->default(false);
             $table->boolean('exchange')->default(false);
             
-            $table->string('image');
+            $table->string('image')->default('img/homes/default.jpg');
             $table->string('image_1')->nullable();
             $table->string('image_2')->nullable();
             $table->string('image_3')->nullable();
