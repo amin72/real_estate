@@ -8,43 +8,43 @@
 @section('content')
 <section class="bg-green-600 opacity-80 text-white px-8 sm:px-40 xl:px-96 py-16 text-center">
   <h1 class="text-5xl">{{ $listing->title }}</h1>
-  <p class="text-2xl pt-6">{{ $listing->address }}</p>
+  <h2 class="text-3xl my-4">{{ $listing->zone->name }}</h2>
+  <p class="text-2xl">{{ $listing->address }}</p>
 </section>
 
 <main class="px-8 sm:px-40 xl:px-96 my-10">
-  <img src="{{ asset($listing->image) }}" alt="" class="rounded">
-  <!-- load images -->
+  <img src="{{ asset($listing->image) }}" alt="{{ $listing->title }}" class="rounded">
 
   <!-- Thumbnails -->
   <div class="flex flex-row flex-wrap">
     @if ($listing->image_1)
       <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_1) }}" data-lightbox="home-image-set">
-        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_1') }}" alt="">
+        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_1') }}" alt="{{ $listing->title ">
       </a>
     @endif
     @if ($listing->image_2)
       <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_2) }}" data-lightbox="home-image-set" class="mr-6">
-        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_2') }}" alt="">
+        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_2') }}" alt="{{ $listing->title }}">
       </a>
     @endif
     @if ($listing->image_3)
       <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_3) }}" data-lightbox="home-image-set" class="mr-6">
-        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_3') }}" alt="">
+        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_3') }}" alt="{{ $listing->title }}">
       </a>
     @endif
     @if ($listing->image_4)
       <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_4) }}" data-lightbox="home-image-set" class="mr-6">
-        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_4') }}" alt="">
+        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_4') }}" alt="{{ $listing->title }}">
       </a>
     @endif
     @if ($listing->image_5)
       <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_5) }}" data-lightbox="home-image-set" class="mr-6">
-        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_5') }}" alt="">
+        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_5') }}" alt="{{ $listing->title }}">
       </a>
     @endif
     @if ($listing->image_6)
       <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_6) }}" data-lightbox="home-image-set" class="mr-6">
-        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_6') }}" alt="">
+        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_6') }}" alt="{{ $listing->title }}">
       </a>
     @endif
   </div>

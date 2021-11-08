@@ -59,7 +59,7 @@ class ListingsController extends Controller
     public function store(ListingUserRequest $request)
     {
         $listing = Listing::create($request->only([
-            'category_id', 'type_id', 'title', 'address', 'zipcode', 'zone',
+            'category_id', 'type_id', 'title', 'address', 'zipcode', 'zone_id',
             'description', 'price', 'bedrooms', 'area', 'has_store',
             'has_garage', 'phone', 'image',
             'image_1', 'image_2', 'image_3', 'image_4', 'image_5',
@@ -104,7 +104,7 @@ class ListingsController extends Controller
                     $extra_img = \Image::make($extra_image->getRealPath());
                     $thumb = \Image::make($extra_image->getRealPath())
                         ->encode('jpg', 90)
-                        ->resize(300, 300, function ($constraint) {
+                        ->resize(100, 100, function ($constraint) {
                             $constraint->aspectRatio();
                         });
     

@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ListingRequest;
+use App\Http\Requests\ZoneCreateRequest;
+use App\Http\Requests\ZoneUpdateRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class ListingCrudController
+ * Class ZoneCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class ListingCrudController extends CrudController
+class ZoneCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +27,9 @@ class ListingCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Listing::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/listing');
-        CRUD::setEntityNameStrings('listing', 'listings');
+        CRUD::setModel(\App\Models\Zone::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/zone');
+        CRUD::setEntityNameStrings('zone', 'zones');
     }
 
     /**
@@ -39,12 +40,8 @@ class ListingCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->removeButton('create');
-
-        CRUD::column('title')->type('text');
-        CRUD::column('agent_name');
-        CRUD::column('phone');
-        CRUD::column('published')->type('boolean');
+        CRUD::column('name');
+        CRUD::field('published')->type('boolean');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -53,6 +50,25 @@ class ListingCrudController extends CrudController
          */
     }
 
+    /**
+     * Define what happens when the Create operation is loaded.
+     * 
+     * @see https://backpackforlaravel.com/docs/crud-operation-create
+     * @return void
+     */
+    protected function setupCreateOperation()
+    {
+        CRUD::setValidation(ZoneCreateRequest::class);
+
+        CRUD::field('name');
+        CRUD::field('published')->type('boolean');
+
+        /**
+         * Fields can be defined using the fluent syntax or array syntax:
+         * - CRUD::field('price')->type('number');
+         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
+         */
+    }
 
     /**
      * Define what happens when the Update operation is loaded.
@@ -62,33 +78,9 @@ class ListingCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        CRUD::setValidation(ListingRequest::class);
+        CRUD::setValidation(ZoneUpdateRequest::class);
 
-        CRUD::field('title');
-
-        CRUD::field('zone');
-        CRUD::field('category');
-        CRUD::field('type');
-
-        CRUD::field('address');
-        CRUD::field('zipcode');
-        CRUD::field('description');
-        CRUD::field('price')->type('number');
-        CRUD::field('bedrooms')->type('number');
-        CRUD::field('has_store');
-        CRUD::field('has_garage');
-        CRUD::field('area')->type('number');
+        CRUD::field('name');
         CRUD::field('published')->type('boolean');
-        CRUD::field('agent_name');
-        CRUD::field('requested')->type('boolean');
-        CRUD::field('exchange')->type('boolean');
-
-        CRUD::field('image')->type('image');
-        CRUD::field('image_1')->type('image');
-        CRUD::field('image_2')->type('image');
-        CRUD::field('image_3')->type('image');
-        CRUD::field('image_4')->type('image');
-        CRUD::field('image_5')->type('image');
-        CRUD::field('image_6')->type('image');
     }
 }

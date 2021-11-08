@@ -25,8 +25,10 @@ class CreateListingsTable extends Migration
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('types');
 
+            $table->unsignedBigInteger('zone_id');
+            $table->foreign('zone_id')->references('id')->on('zones');
+
             $table->string('title', 30);
-            $table->string('zone', 30);
             $table->string('address', 200);
             $table->string('zipcode', 10);
             $table->text('description')->nullable();

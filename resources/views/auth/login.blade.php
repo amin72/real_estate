@@ -49,13 +49,12 @@
   
       <!-- Remember Me -->
       <div class="block mt-4">
-        <label for="remember_me" class="inline-flex items-center">
-          
+        <label for="remember" class="inline-flex items-center">
           <input
+            id="remember"
             type="checkbox"
             name="remember"
             class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border border-indigo-400 p-2">
-          
           <span class="mr-2 text-sm text-gray-600">مرا به خاطر بسپار</span>
         </label>
       </div>

@@ -54,7 +54,7 @@
       @foreach($listings as $listing)
       <div class="w-full sm:w-1/2 lg:w-1/3 mb-20 sm:px-2 md:px-6">
         <div class="flex flex-col relative bg-white border-2">
-          <img class="w-full" src="{{ asset($listing->image) }}" alt="">
+          <img class="w-full h-64 object-cover" src="{{ $listing->getThumbnail('image') }}" alt="{{ $listing->title }}">
           <div class="absolute pt-4 pr-2 inset-0 z-10">
             <span class="change_price tracking-widest bg-green-400 p-2 rounded text-white text-sm cursor-default">{{ $listing->price }} تومان</span>
           </div>

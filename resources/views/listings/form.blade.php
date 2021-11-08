@@ -31,23 +31,23 @@
         </div>
         
         <!-- zone -->
-        <div class="mt-4">
-          <label for="zone">نام منطقه</label>
-          <input
-            type="text"
-            name="zone"
-            value="{{ old('zone') }}"
-            class="block mt-1 w-full rounded"
-            maxlength="30"
-            required>
-
-            @error('zone')
-              @if ($message == 'The zone must not be greater than 30 characters.')
-                @include('partials.error_message', ['message' => 'منطقه حداکثر می تواند ۳۰ کاراکتر باشد.'])
-              @endif
-            @enderror
+        <div class="block mt-6">
+          <span>انتخاب منطقه</span>
+          <div>
+            <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded" name="zone_id" required>
+              <option value="empty">-----</option>
+              @foreach (\App\Models\Zone::where('published', true)->get() as $zone)
+                <option value="{{ $zone->id }}">{{ $zone->name }}</option>
+              @endforeach
+            </select>
+          </div>
+          @error('zone_id')
+            <div class="mt-2 text-red-600">
+              {{ $message }}
+            </div>
+          @enderror
         </div>
-        
+                
         <!-- Address -->
         <div class="mt-4">
           <label for="address">آدرس</label>
@@ -184,7 +184,7 @@
               @endforeach
             </select>
           </div>
-          @error('category_id')
+          @error('zone_id')
             <div class="mt-2 text-red-600">
               {{ $message }}
             </div>
@@ -233,6 +233,7 @@
         <div class="mt-4">
           <label for="exchange" class="inline-flex items-center">
             <input
+              id="exchange"
               type="checkbox"
               name="exchange"
               class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border border-indigo-400 p-2">
