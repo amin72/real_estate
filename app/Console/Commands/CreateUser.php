@@ -13,7 +13,7 @@ class CreateUser extends Command
      */
     protected $signature = 'backpack:user
                             {--N|name= : The name of the new user}
-                            {--E|phone= : The user\'s phone number}
+                            {--p|phone= : The user\'s phone number}
                             {--P|password= : User\'s password}
                             {--encrypt=true : Encrypt user\'s password if it\'s plain text ( true by default )}';
 
