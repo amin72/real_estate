@@ -13,8 +13,6 @@ Route::name('pages.')->group(function () {
 
 
 Route::resource('listings', ListingsController::class);
-Route::get('listings/search', [ListingsController::class, 'search'])
-    ->name('listings.search');
 
 
 // Route::name('dashboard.')->middleware(['auth'])->group(function() {

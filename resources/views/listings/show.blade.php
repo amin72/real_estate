@@ -19,7 +19,7 @@
   <div class="flex flex-row flex-wrap">
     @if ($listing->image_1)
       <a class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:w-1/6 mt-4" href="{{ asset($listing->image_1) }}" data-lightbox="home-image-set">
-        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_1') }}" alt="{{ $listing->title ">
+        <img class="h-16 rounded" src="{{ $listing->getThumbnail('image_1') }}" alt="{{ $listing->title }} ">
       </a>
     @endif
     @if ($listing->image_2)

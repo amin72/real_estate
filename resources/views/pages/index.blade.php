@@ -8,38 +8,27 @@
       <h1 class="text-4xl">جستجوی در املاک ثبت شده</h1>
       <p class="text-xl my-6">در این قسمت می توانید ملک مورد نظر خود را براساس فیلترهای مورد نظر خود انتخاب کنید.</p>
 
-      <form class="flex flex-col text-gray-800">
-        <div class="flex flex-col md:flex-row my-2">
-          <input type="text" class="block w-full md:w-1/2 md:ml-2 rounded py-2 px-2 my-2 focus:outline-none" placeholder="کلمه مورد را وارد کنید">
-          <input type="text" class="block w-full md:w-1/2 md:mr-2 rounded py-2 px-2 my-2 focus:outline-none" placeholder="کلمه مورد را وارد کنید">
-        </div>
-        
+      <form method="GET" action="{{ route('listings.index') }}" class="flex flex-col text-gray-800">
         <div class="flex flex-col md:flex-row mb-2">
-          <select name="" class="form-select px-2 py-2 rounded-lg w-full md:w-1/3 md:ml-2 focus:outline-none bg-left my-2 focus:outline-none">
-            <option value="">---</option>
-            <option value="">آپارتمان</option>
-            <option value="">ویلا</option>
-            <option value="">هتل</option>
-            <option value="">مسافر خانه</option>
+          <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded form-select px-2 py-2 rounded-lg w-full md:w-1/3 md:ml-2 focus:outline-none" name="zone">
+            <option value="empty">انتخاب نام منطقه</option>
+            @foreach (\App\Models\Zone::where('published', true)->get() as $zone)
+              <option value="{{ $zone->id }}">{{ $zone->name }}</option>
+            @endforeach
           </select>
 
-          <select name="" class="form-select px-2 py-2 rounded-lg w-full md:w-1/3 md:mx-2 focus:outline-none bg-left my-2 focus:outline-none">
-            <option value="">---</option>
-            <option value="">یک</option>
-            <option value="">دو</option>
-            <option value="">سه</option>
-            <option value="">چهار</option>
-            <option value="">پنج</option>
+          <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded form-select px-2 py-2 rounded-lg w-full md:w-1/3 md:ml-2 focus:outline-none" name="type">
+            <option value="empty">انتخاب نوع ملک</option>
+            @foreach (\App\Models\Type::where('published', true)->get() as $type)
+              <option value="{{ $type->id }}">{{ $type->name }}</option>
+            @endforeach
           </select>
 
-          <select name="" class="form-select px-2 py-2 rounded-lg w-full md:w-1/3 md:mr-2 focus:outline-none bg-left my-2 focus:outline-none">
-            <option value="">---</option>
-            <option value="">50,000,000</option>
-            <option value="">60,000,000</option>
-            <option value="">70,000,000</option>
-            <option value="">80,000,000</option>
-            <option value="">90,000,000</option>
-            <option value="">100,000,000</option>
+          <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded form-select px-2 py-2 rounded-lg w-full md:w-1/3 md:ml-2 focus:outline-none" name="price">
+            <option value="empty">انتخاب قیمت</option>
+            @foreach (\App\Models\Price::where('published', true)->get() as $price)
+              <option value="{{ $price->amount }}">{{ $price->amount }}</option>
+            @endforeach
           </select>
         </div>
 

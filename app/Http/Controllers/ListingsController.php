@@ -14,10 +14,27 @@ class ListingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $listings = Listing::where('published', true)
-            ->orderBy('created_at')->paginate(12);
+        $zone_id = $request->zone == 'empty' ? '' : $request->zone;
+        $type_id = $request->type== 'empty' ? '' : $request->type;
+        $price = $request->price == 'empty' ? '' : $request->price;
+
+        $listings = Listing::where('published', true);
+        
+        if ($zone_id) {
+            $listings->where('zone_id', $zone_id);
+        }
+        
+        if ($type_id) {
+            $listings->where('type_id', $type_id);
+        }
+        
+        if ($price) {
+            $listings->where('price', '<=', $price);
+        }
+
+        $listings = $listings->orderBy('created_at')->paginate(12);
         
         return view('listings.index', [
             'listings' => $listings
@@ -164,12 +181,5 @@ class ListingsController extends Controller
     public function destroy($id)
     {
         dd("destroy");
-    }
-
-
-    public function search()
-    {
-        $listings = [];
-        return view('listings.index', ['listings' => $listings]);
     }
 }
