@@ -60,8 +60,10 @@ class ListingsController extends Controller
             'listing_has_store' => '',
             'listing_has_garage' => '',
             'listing_area' => '',
+            'listing_requested' => '',
+            'listing_exchange' => '',
             'image_required' => true,
-            'action' => 'POST',
+            'method' => 'POST',
         ]);
         // 'image', 'image_1', 'image_2', 'image_3',
         // 'image_4', 'image_5', 'image_6'
@@ -145,7 +147,7 @@ class ListingsController extends Controller
      */
     public function show($id)
     {
-        $listing = Listing::findOrFail($id);
+        $listing = Listing::where('published', true)->findOrFail($id);
         return view('listings.show', ['listing' => $listing]);
     }
 
@@ -157,7 +159,29 @@ class ListingsController extends Controller
      */
     public function edit($id)
     {
-        dd("edit");
+        $listing = Listing::findOrFail($id);
+
+        return view('listings.form')->with([
+            'listing' => $listing,
+            'page_title' => 'ویرایش ملک',
+            'listing_title' => $listing->title,
+            'listing_description' => $listing->description,
+            'listing_price' => $listing->price,
+            'listing_address' => $listing->address,
+            'listing_zipcode' => $listing->zipcode,
+            'listing_bedrooms' => $listing->bedrooms,
+            'listing_has_store' => $listing->has_store,
+            'listing_has_garage' => $listing->has_garage,
+            'listing_requested' => $listing->requested,
+            'listing_exchange' => $listing->exchange,
+            'listing_area' => $listing->area,
+            'listing_phone' => $listing->phone,
+            'image_required' => false,
+            'method' => 'PUT',
+            'action' => 'update',
+        ]);
+        // 'image', 'image_1', 'image_2', 'image_3',
+        // 'image_4', 'image_5', 'image_6'
     }
 
     /**

@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 
+@section('title')
+  مشاهده املاک
+@endsection
+
+
 @section('content')
 <main class="sm:px-4 xl:px-32 mt-10">
   <section class="mt-20 flex flex-wrap">

@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 
+@section('title')
+  درباره ما
+@endsection
+
+
 @section('content')
 <section class="bg-green-600 opacity-80 text-white px-8 sm:px-40 xl:px-96 py-16 text-center">
   <h1 class="text-5xl">درباره سایت املاک</h1>

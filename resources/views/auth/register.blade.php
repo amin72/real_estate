@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+  ثبت نام
+@endsection
+
 
 @section('content')
 <main class="px-4 sm:px-32 md:px-40 lg:px-80 xl:px-96 my-16">

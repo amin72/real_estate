@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 
+@section('title')
+  خانه
+@endsection
+
+
 @section('content')
   <main class="sm:px-4 xl:px-32 mt-10">
     <!-- search -->

@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 
+@section('title')
+  ورود به سایت
+@endsection
+
+
 @section('content')
 <main class="px-4 sm:px-32 md:px-40 lg:px-80 xl:px-96 my-16">
   <div class="w-full xl:w-1/2 mx-auto border-2 border-gray-200 rounded bg-white">
