@@ -38,6 +38,11 @@ class Listing extends Model
     }
 
 
+    public function owner() {
+        return $this->belongsTo(\App\Models\User::class, 'user_id');
+    }
+
+
     public function getImageThumbnail($image) {
         return str_replace('.', '_small.', $this->image);
     }

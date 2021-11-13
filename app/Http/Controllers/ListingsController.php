@@ -204,6 +204,19 @@ class ListingsController extends Controller
      */
     public function destroy($id)
     {
-        dd("destroy");
+        $listing = Listing::where(['id' => $id, 'published' => false])
+            ->firstOrFail();
+
+        if ($listing->owner->id !== \Auth::id()) {
+            abort(401);
+        }
+
+        if ($listing->delete()) {
+            return redirect(route('listings.index'))
+                ->with('success', 'آگهی با موفقیت حذف شد.');
+        }
+
+        return redirect(route('dashboard.index'))
+            ->with('error', 'حذف آگهی امکان پذیر نیست.');
     }
 }
