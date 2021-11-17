@@ -29,7 +29,7 @@
             @endforeach
           </select>
 
-          <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded form-select px-2 py-2 rounded-lg w-full md:w-1/3 md:ml-2 focus:outline-none" name="price">
+          <select id="price" class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded form-select px-2 py-2 rounded-lg w-full md:w-1/3 md:ml-2 focus:outline-none" name="price">
             <option value="empty">انتخاب قیمت</option>
             @foreach (\App\Models\Price::where('published', true)->get() as $price)
               <option value="{{ $price->amount }}">{{ $price->amount }}</option>
@@ -81,6 +81,9 @@
 
 
 @section('bottom_scripts')
+  <script>
+    $("#price option").each(function() {
+      formatElementPrice($(this))
+    });
+  </script>
 @endsection
-</body>
-</html>
