@@ -45,14 +45,17 @@
     <h2 class="text-center text-2xl text-white bg-primary py-4 mb-4">ویرایش اطلاعات کاربری</h2>
     
     <div class="my-10 px-10">
-    <form action="" class="w-full md:w-1/2">
+      <form action="{{ route('dashboard.update', 1) }}" method="POST" class="w-full md:w-1/2">
+        @csrf
+        @method('PUT')
+        
         <!-- Name -->
         <div>
           <label for="name">نام</label>
           <input
             type="text"
             name="name"
-            value="{{ old('name') }}"
+            value="{{ Auth::user()->name }}"
             class="block mt-1 w-full rounded"
             required />
         </div>

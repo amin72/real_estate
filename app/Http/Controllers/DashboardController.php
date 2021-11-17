@@ -69,7 +69,14 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:40'
+        ]);
+
+        $user = \Auth::user();
+        $user->name = $request->name;
+        $user->save();
+        return redirect(route('dashboard.index'))->with(['success' => 'اطلاعات کاربری با موفقیت بروزرسانی شد.']);
     }
 
     /**
@@ -81,11 +88,5 @@ class DashboardController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-
-    public function update_info()
-    {
-        dd('update info');
     }
 }
