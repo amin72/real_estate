@@ -16,10 +16,13 @@
         <ul class="list-decimal font-semibold">
           @foreach($listings as $listing)
             <li class="py-4">
-              <a href="#" class="text-lg">{{ $listing->title }}</a>
               @if ($listing->published)
+                <h3>  
+                  <a href="{{ route('listings.show', $listing->id) }}" class="text-lg">{{ $listing->title }}</a>
+                </h3>
                 <p class="mt-2 font-normal">این ملک در سایت ثبت شده است. جهت ویرایش یا حذف آن با مدیر سایت در تماس باشید.</p>
               @else
+                <h3 class="text-lg">{{ $listing->title }}</h3>
                 <div class="flex flex-col md:flex-row mt-3">
                   {{-- delete post --}}
                   <form action="{{ route('listings.destroy', $listing) }}" method="POST" onsubmit="return confirm('از حذف این آگهی مطمئن هستید؟')">
