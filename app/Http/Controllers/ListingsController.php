@@ -62,6 +62,9 @@ class ListingsController extends Controller
             'listing_area' => '',
             'listing_requested' => '',
             'listing_exchange' => '',
+            'listing_category' => '',
+            'listing_type' => '',
+            'listing_zone' => '',
             'image_required' => true,
             'method' => 'POST',
         ]);
@@ -78,9 +81,9 @@ class ListingsController extends Controller
     public function store(ListingUserRequest $request)
     {
         $listing = Listing::create($request->only([
-            'category_id', 'type_id', 'title', 'address', 'zipcode', 'zone_id',
-            'description', 'price', 'bedrooms', 'area', 'has_store',
-            'has_garage', 'phone', 'image',
+            'category_id', 'type_id', 'title', 'address', 'zipcode',
+            'zone_id', 'description', 'price', 'bedrooms', 'area',
+            'has_store', 'has_garage', 'phone', 'image',
             'image_1', 'image_2', 'image_3', 'image_4', 'image_5',
         ]));
 
@@ -176,6 +179,9 @@ class ListingsController extends Controller
             'listing_exchange' => $listing->exchange,
             'listing_area' => $listing->area,
             'listing_phone' => $listing->phone,
+            'listing_category' => $listing->category->slug,
+            'listing_type' => $listing->type->slug,
+            'listing_zone' => $listing->zone->name,
             'image_required' => false,
             'method' => 'PUT',
             'action' => 'update',
@@ -193,7 +199,69 @@ class ListingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd("update");
+        $listing = Listing::where(['published' => false, 'id' => $id])
+            ->firstOrFail();
+
+        $listing->update($request->only([
+            'category_id', 'type_id', 'title', 'address', 'zipcode',
+            'zone_id', 'description', 'price', 'bedrooms', 'area',
+            'has_store', 'has_garage', 'phone', 'image',
+            'image_1', 'image_2', 'image_3', 'image_4', 'image_5',
+        ]));
+
+        $listing->requested = $request->requested == 'on';
+        $listing->exchange = $request->exchange == 'on';
+
+        if (! $request->requested) {
+            $disk = 'public';
+
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $filename_thumb = time() . '_small.' . $image->getClientOriginalExtension();
+            $path = 'listings/' . $filename;
+            $path2 = 'listings/' . $filename_thumb;
+    
+            $img = \Image::make($image->getRealPath());
+            $thumb = \Image::make($image->getRealPath())
+                ->encode('jpg', 90)
+                ->resize(300, 300, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+    
+            \Storage::disk($disk)->put($path, $img->stream(), 'public');
+            \Storage::disk($disk)->put($path2, $thumb->stream(), 'public');
+    
+            $listing->image = 'storage/' . $path;
+            $listing->save();
+    
+            $image_fields = ['image_1', 'image_2', 'image_3', 'image_4', 'image_5', 'image_6'];
+        
+            foreach ($image_fields as $image_field) {
+                $extra_image = $request->{$image_field};
+                if ($extra_image) {
+                    $filename = time() . '_' . $image_field . '.' . $extra_image->getClientOriginalExtension();
+                    $filename_thumb = time() . '_' . $image_field . '_small.' . $extra_image->getClientOriginalExtension();
+    
+                    $path = 'listings/' . $filename;
+                    $path2 = 'listings/' . $filename_thumb;
+            
+                    $extra_img = \Image::make($extra_image->getRealPath());
+                    $thumb = \Image::make($extra_image->getRealPath())
+                        ->encode('jpg', 90)
+                        ->resize(100, 100, function ($constraint) {
+                            $constraint->aspectRatio();
+                        });
+    
+                    \Storage::disk($disk)->put($path, $extra_img->stream(), 'public');
+                    \Storage::disk($disk)->put($path2, $thumb->stream(), 'public');
+    
+                    $listing->{$image_field} = 'storage/' . $path;
+                }
+            }
+        }
+        
+        $listing->save();
+        return redirect(route('pages.index'));
     }
 
     /**

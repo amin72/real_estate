@@ -10,10 +10,12 @@
     <div class="w-full xl:w-1/2 mx-auto border-2 border-gray-200 rounded bg-white">
       <h1 class="text-3xl text-white bg-primary py-4 px-42 tracking-wide text-center">{{ $page_title }}</h1>
 
-      {{ $errors }}
-
-      <form method="{{ $method }}" action="{{ $method == 'POST' ? route('listings.store') : route('listings.update', $listing->id) }}" class="px-6 py-10" onsubmit="unFormatPrice()" enctype="multipart/form-data">
+      <form method="POST" action="{{ $method == 'POST' ? route('listings.store') : route('listings.update', $listing->id) }}" class="px-6 py-10" onsubmit="unFormatPrice()" enctype="multipart/form-data">
         @csrf
+
+        @if ($method === 'PUT')
+          @method('PUT')
+        @endif
         
         <!-- title -->
         <div>
@@ -44,7 +46,11 @@
             <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded" name="zone_id" required>
               <option value="empty">-----</option>
               @foreach (\App\Models\Zone::where('published', true)->get() as $zone)
-                <option value="{{ $zone->id }}">{{ $zone->name }}</option>
+                @if ($zone->name === $listing_zone)
+                 <option value="{{ $zone->id }}" selected>{{ $zone->name }}</option>
+                @else
+                  <option value="{{ $zone->id }}">{{ $zone->name }}</option>
+                @endif
               @endforeach
             </select>
           </div>
@@ -190,7 +196,11 @@
             <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded" name="category_id" required>
               <option value="empty">-----</option>
               @foreach (\App\Models\Category::where('published', true)->get() as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @if ($category->slug === $listing_category)
+                 <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                @else
+                  <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endif
               @endforeach
             </select>
           </div>
@@ -208,7 +218,11 @@
             <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded" name="type_id" required>
               <option value="empty">-----</option>
               @foreach (\App\Models\Type::where('published', true)->get() as $type)
-                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                @if ($type->slug === $listing_type)
+                  <option value="{{ $type->id }}" selected>{{ $type->name }}</option>
+                @else
+                  <option value="{{ $type->id }}">{{ $type->name }}</option>
+                @endif
               @endforeach
             </select>
           </div>
