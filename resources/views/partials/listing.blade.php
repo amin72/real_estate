@@ -2,9 +2,9 @@
   <div class="flex flex-col relative bg-white border-2">
     <img class="w-full h-64 object-cover" src="{{ $listing->getThumbnail('image') }}" alt="">
     <div class="absolute pt-4 pr-2 inset-0 z-10">
-      <span class="change_price tracking-widest bg-green-400 p-2 rounded text-white text-sm cursor-default">{{ $listing->price }} تومان</span>
+      <span class="change_price tracking-widest bg-secondary p-2 rounded text-white text-sm cursor-default">{{ $listing->price }} تومان</span>
     </div>
-    <div class="flex-auto p-4 text-green-400 z-20">
+    <div class="flex-auto p-4 text-secondary z-20">
       <div class="text-center">
         <h4 class="text-xl font-semibold text-primary">{{ $listing->title }}</h4>
         <p class="text-gray-700 mt-1 mb-4 text-lg">{{ Str::substr($listing->address, 0, 20) }}</p>

@@ -31,7 +31,7 @@
                     <button type="submit" class="block px-4 py-2 text-white bg-red-400 rounded md:ml-4 mb-4 md:mb-0 text-center">حذف</button>
                   </form>
 
-                  <a href="{{ route('listings.edit', $listing->id) }}" class="block px-4 py-2 text-white bg-green-400 rounded text-center">ویرایش</a>
+                  <a href="{{ route('listings.edit', $listing->id) }}" class="block px-4 py-2 text-white bg-secondary rounded text-center">ویرایش</a>
                 </div>
               @endif
             </li>
@@ -61,7 +61,7 @@
         </div>
 
         <div class="mt-4">
-          <button class="block px-4 py-2 text-white rounded bg-green-400 font-semibold tracking-wide">
+          <button class="block px-4 py-2 text-white rounded bg-secondary font-semibold tracking-wide">
             ارسال
           </button>
         </div>

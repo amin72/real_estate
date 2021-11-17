@@ -87,7 +87,7 @@
       </div>
   
       <div class="flex flex-col mt-4">
-        <button class="block px-4 py-2 text-white rounded bg-green-400 font-semibold tracking-wide">
+        <button class="block px-4 py-2 text-white rounded bg-secondary font-semibold tracking-wide">
           ثبت نام
         </button>
 

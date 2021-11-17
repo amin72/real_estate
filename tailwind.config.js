@@ -18,7 +18,7 @@ module.exports = {
       },
       colors: {
         primary: '#10284e',
-        secondary: 'rgba(51, 51, 51, 0.8)'
+        secondary: '#1fc4b8'
       },
       transitionProperty: {
         'height': 'height'

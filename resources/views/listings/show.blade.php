@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-<section class="bg-green-600 opacity-80 text-white px-8 sm:px-40 xl:px-96 py-16 text-center">
+<section class="bg-secondary opacity-80 text-white px-8 sm:px-40 xl:px-96 py-16 text-center">
   <h1 class="text-5xl">{{ $listing->title }}</h1>
   <h2 class="text-3xl my-4">{{ $listing->zone->name }}</h2>
   <p class="text-2xl">{{ $listing->address }}</p>
@@ -54,7 +54,7 @@
     @endif
   </div>
 
-  <div class="text-green-400 my-10 flex flex-col md:flex-row flex-wrap justify-around">
+  <div class="text-secondary my-10 flex flex-col md:flex-row flex-wrap justify-around">
 
     <!-- price -->
     <div class="w-full md:w-1/2 mx-auto px-4">
@@ -254,7 +254,7 @@
       class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
       <div class="mt-3 text-center">
         <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
-          <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg class="h-6 w-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
         </div>
@@ -353,7 +353,7 @@
         <div class="items-center px-4 py-3">
           <button
             id="ok-btn"
-            class="px-4 py-2 bg-green-300 text-green-800 text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
+            class="px-4 py-2 bg-secondary text-white text-base font-medium rounded-md w-full shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300"
           >
             بستن
           </button>

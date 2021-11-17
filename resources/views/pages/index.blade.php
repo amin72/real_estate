@@ -38,7 +38,7 @@
         </div>
 
         <div>
-          <button class="bg-green-500 px-3 py-2 rounded w-full my-2 text-white font-semibold text-lg">ارسال</button>
+          <button class="bg-blue-500 px-3 py-2 rounded w-full my-2 text-white font-semibold text-lg">ارسال</button>
         </div>
       </form>
     </section>
@@ -52,7 +52,7 @@
   </main>
 
   <!-- bottom desciption -->
-  <section class="bg-green-400 pb-16 px-10 xl:px-32 text-center text-white">
+  <section class="bg-secondary pb-16 px-10 xl:px-32 text-center text-white">
     <div class="flex flex-col lg:flex-row justify-between">
       <div class="w-full lg:w-1/3 px-8">
         <svg class="h-20 w-20 fill-current mx-auto mb-2 mt-10" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
