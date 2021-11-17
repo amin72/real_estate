@@ -5,3 +5,4 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('type') }}'><i class='nav-icon la la-question'></i> Types</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('zone') }}'><i class='nav-icon la la-question'></i> Zones</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('price') }}'><i class='nav-icon la la-question'></i> Prices</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('manager-info') }}'><i class='nav-icon la la-question'></i> Manager's Info </a></li>

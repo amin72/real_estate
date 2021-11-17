@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeTableSeeder::class);
         $this->call(ZoneTableSeeder::class);
         $this->call(PriceTableSeeder::class);
+        $this->call(ManagerInfoTableSeeder::class);
         
         // \App\Models\Listing::unsetEventDispatcher();
         // \App\Models\Listing::factory(20)->create();
