@@ -7,9 +7,9 @@
 
 
 @section('content')
-  <main class="sm:px-4 xl:px-32 mt-10">
+  <main class="sm:px-4 xl:px-32">
     <!-- search -->
-    <section class="bg-secondary py-10 px-10 xl:px-32 text-center text-white my-10 sm:mx-2 md:mx-6">
+    <section class="bg-secondary py-10 px-10 xl:px-32 text-center text-white mt-6 mb-10 sm:mx-2 md:mx-6">
       <h1 class="text-4xl">جستجوی در املاک ثبت شده</h1>
       <p class="text-xl my-6">در این قسمت می توانید ملک مورد نظر خود را براساس فیلترهای مورد نظر خود انتخاب کنید.</p>
 

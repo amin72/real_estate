@@ -7,7 +7,7 @@
 
 
 @section('content')
-<main class="sm:px-4 xl:px-32 mt-10">
+<main class="sm:px-4 xl:px-32 mt-6">
   <div class="border border-gray-200 rounded">
     <h2 class="text-center text-2xl text-white bg-primary py-4 overflow-hidden">املاک ثبت شده توسط شما</h2>
 

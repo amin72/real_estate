@@ -111,6 +111,11 @@
     </div>
   </nav>
 
+  <!-- flash messages -->
+  <div class="sm:mx-2 md:mx-6 mt-6">
+    @include('partials.messages')    
+  </div>
+
   {{-- main content --}}
   @yield('content')
 
@@ -134,6 +139,11 @@
     $(".change_price").text(function() {
       var element = $(this).eq(0)
       formatElementPrice(element)
+    })
+
+    // remove message
+    $('.message_close').on('click', function(e) {
+        $(this).parent().remove()
     })
   </script>
 

@@ -139,7 +139,7 @@ class ListingsController extends Controller
         }
         
         $listing->save();
-        return redirect(route('pages.index'));
+        return redirect(route('pages.index'))->with('success', 'آگهی شما با موفقیت ثبت شد. پس از تایید توسط مدیر سایت درج می شود.');
     }
 
     /**
@@ -261,7 +261,7 @@ class ListingsController extends Controller
         }
         
         $listing->save();
-        return redirect(route('pages.index'));
+        return redirect(route('pages.index'))->with('success', 'آگهی شما با موفقیت بروزرسانی شد.');
     }
 
     /**
@@ -280,7 +280,7 @@ class ListingsController extends Controller
         }
 
         if ($listing->delete()) {
-            return redirect(route('listings.index'))
+            return redirect(route('dashboard.index'))
                 ->with('success', 'آگهی با موفقیت حذف شد.');
         }
 
