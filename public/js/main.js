@@ -26,7 +26,13 @@ function formatElementPrice(element) {
 
 // remove , from price digits
 function unFormatPrice() {
+  // price
   var value = price.value
   var newValue = value.replace( /\,/g, "");
   price.value = newValue
+
+  // price_monthly
+  var value = price_monthly.value
+  var newValue = value.replace( /\,/g, "");
+  price_monthly.value = newValue
 }

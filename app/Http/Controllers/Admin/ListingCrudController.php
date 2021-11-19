@@ -74,6 +74,7 @@ class ListingCrudController extends CrudController
         CRUD::field('zipcode');
         CRUD::field('description');
         CRUD::field('price')->type('number');
+        CRUD::field('price_monthly')->type('number');
         CRUD::field('bedrooms')->type('number');
         CRUD::field('has_store');
         CRUD::field('has_garage');

@@ -28,6 +28,7 @@ class ListingUserRequest extends FormRequest
             'address' => 'required|max:200',
             'zipcode' => 'required|max:10',
             'price' => 'required|integer',
+            'price_monthly' => 'required|integer',
             'bedrooms' => 'required|integer',
             'has_store' => 'required|boolean',
             'has_garage' => 'required|boolean',

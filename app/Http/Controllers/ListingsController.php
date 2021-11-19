@@ -54,6 +54,7 @@ class ListingsController extends Controller
             'listing_title' => '',
             'listing_description' => '',
             'listing_price' => '',
+            'listing_price_monthly' => '',
             'listing_address' => '',
             'listing_zipcode' => '',
             'listing_bedrooms' => '',
@@ -81,8 +82,8 @@ class ListingsController extends Controller
     public function store(ListingUserRequest $request)
     {
         $listing = Listing::create($request->only([
-            'category_id', 'type_id', 'title', 'address', 'zipcode',
-            'zone_id', 'description', 'price', 'bedrooms', 'area',
+            'category_id', 'type_id', 'title', 'address', 'zipcode', 'zone_id',
+            'description', 'price', 'price_monthly', 'bedrooms', 'area',
             'has_store', 'has_garage', 'phone', 'image',
             'image_1', 'image_2', 'image_3', 'image_4', 'image_5',
         ]));
@@ -170,6 +171,7 @@ class ListingsController extends Controller
             'listing_title' => $listing->title,
             'listing_description' => $listing->description,
             'listing_price' => $listing->price,
+            'listing_price_monthly' => $listing->price_monthly,
             'listing_address' => $listing->address,
             'listing_zipcode' => $listing->zipcode,
             'listing_bedrooms' => $listing->bedrooms,
@@ -203,8 +205,9 @@ class ListingsController extends Controller
             ->firstOrFail();
 
         $listing->update($request->only([
-            'category_id', 'type_id', 'title', 'address', 'zipcode',
-            'zone_id', 'description', 'price', 'bedrooms', 'area',
+            'category_id', 'type_id', 'title', 'address', 'zipcode', 'zone_id',
+            'description', 'price', 'price_monthly', 'bedrooms', 'area',
+            
             'has_store', 'has_garage', 'phone', 'image',
             'image_1', 'image_2', 'image_3', 'image_4', 'image_5',
         ]));

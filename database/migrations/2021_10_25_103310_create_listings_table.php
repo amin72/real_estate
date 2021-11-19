@@ -33,6 +33,7 @@ class CreateListingsTable extends Migration
             $table->string('zipcode', 10);
             $table->text('description')->nullable();
             $table->unsignedBigInteger('price');
+            $table->unsignedBigInteger('price_monthly')->default(0);
             $table->unsignedTinyInteger('bedrooms');
             $table->boolean('has_store');
             $table->boolean('has_garage');

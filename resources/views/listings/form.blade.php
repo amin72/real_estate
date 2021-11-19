@@ -10,6 +10,8 @@
     <div class="w-full xl:w-1/2 mx-auto border-2 border-gray-200 rounded bg-white">
       <h1 class="text-3xl text-white bg-primary py-4 px-42 tracking-wide text-center">{{ $page_title }}</h1>
 
+      {{ $errors }}
+
       <form method="POST" action="{{ $method == 'POST' ? route('listings.store') : route('listings.update', $listing->id) }}" class="px-6 py-10" onsubmit="unFormatPrice()" enctype="multipart/form-data">
         @csrf
 
@@ -60,7 +62,51 @@
             </div>
           @enderror
         </div>
-                
+
+                <!-- Categories -->
+                <div class="block mt-6">
+          <span>دسته بندی</span>
+          <div>
+            <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded" name="category_id" id="category_id" required>
+              <option value="empty">-----</option>
+              @foreach (\App\Models\Category::where('published', true)->get() as $category)
+                @if ($category->slug === $listing_category)
+                 <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                @else
+                  <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endif
+              @endforeach
+            </select>
+          </div>
+          @error('category_id')
+            <div id="image_1" class="mt-2 text-red-600">
+              {{ $message }}
+            </div>
+          @enderror
+        </div>
+
+        <!-- Types -->
+        <div class="block mt-6">
+          <span>نوع ملک</span>
+          <div>
+            <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded" name="type_id" required>
+              <option value="empty">-----</option>
+              @foreach (\App\Models\Type::where('published', true)->get() as $type)
+                @if ($type->slug === $listing_type)
+                  <option value="{{ $type->id }}" selected>{{ $type->name }}</option>
+                @else
+                  <option value="{{ $type->id }}">{{ $type->name }}</option>
+                @endif
+              @endforeach
+            </select>
+          </div>
+          @error('zone_id')
+            <div class="mt-2 text-red-600">
+              {{ $message }}
+            </div>
+          @enderror
+        </div>
+        
         <!-- Address -->
         <div class="mt-4">
           <label for="address">آدرس</label>
@@ -102,6 +148,19 @@
             class="block mt-1 w-full rounded tracking-widest"
             onkeyup="formatInputPrice(this)"
             value="{{ $listing_price ?? old('price') }}"
+            required>
+        </div>
+
+        <!-- Price Monthly -->
+        <div class="mt-4 hidden" id="price_monthly_div">
+          <label for="price_monthly">اجاره ماهانه (تومان)</label>
+          <input
+            type="text"
+            id="price_monthly"
+            name="price_monthly"
+            class="block mt-1 w-full rounded tracking-widest"
+            onkeyup="formatInputPrice(this)"
+            value="{{ $listing_price_monthly ? $listing_price_monthly ?? old('price_monthly') : 0 }}"
             required>
         </div>
 
@@ -189,50 +248,6 @@
           </label>
         </div>
 
-        <!-- Categories -->
-        <div class="block mt-6">
-          <span>دسته بندی</span>
-          <div>
-            <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded" name="category_id" required>
-              <option value="empty">-----</option>
-              @foreach (\App\Models\Category::where('published', true)->get() as $category)
-                @if ($category->slug === $listing_category)
-                 <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                @else
-                  <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endif
-              @endforeach
-            </select>
-          </div>
-          @error('category_id')
-            <div id="image_1" class="mt-2 text-red-600">
-              {{ $message }}
-            </div>
-          @enderror
-        </div>
-
-        <!-- Types -->
-        <div class="block mt-6">
-          <span>نوع ملک</span>
-          <div>
-            <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded" name="type_id" required>
-              <option value="empty">-----</option>
-              @foreach (\App\Models\Type::where('published', true)->get() as $type)
-                @if ($type->slug === $listing_type)
-                  <option value="{{ $type->id }}" selected>{{ $type->name }}</option>
-                @else
-                  <option value="{{ $type->id }}">{{ $type->name }}</option>
-                @endif
-              @endforeach
-            </select>
-          </div>
-          @error('zone_id')
-            <div class="mt-2 text-red-600">
-              {{ $message }}
-            </div>
-          @enderror
-        </div>
-        
         <!-- Description -->
         <div class="mt-4">
           <label for="description">توضیحات</label>
@@ -400,11 +415,22 @@
   <script>
     // format price field
     formatInputPrice($("#price")[0])
+    formatInputPrice($("#price_monthly")[0])
 
     $("#requested").change(function() {
       $("#div_image").toggleClass('hidden')
       $("#div_images").toggleClass('hidden')
     })
+
+    $("#category_id").change(function() {
+      var selectedCategory = $(this).find(":selected").text()
+      if (selectedCategory == 'اجاره') {
+        $("#price_monthly_div").removeClass('hidden')
+      } else {
+        $("#price_monthly_div").addClass('hidden')
+      }
+    })
+
 
     $("#image").change(function() {
       $("#image_name").text(this.files[0].name)
