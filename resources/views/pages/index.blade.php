@@ -15,21 +15,21 @@
 
       <form method="GET" action="{{ route('listings.index') }}" class="flex flex-col text-gray-800">
         <div class="flex flex-col md:flex-row mb-2">
-          <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded form-select px-2 py-2 rounded-lg w-full md:w-1/3 md:ml-2 focus:outline-none" name="zone">
+          <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 form-select rounded-lg w-full md:w-1/3 md:ml-2 focus:outline-none" name="zone">
             <option value="empty">انتخاب نام منطقه</option>
             @foreach (\App\Models\Zone::where('published', true)->get() as $zone)
               <option value="{{ $zone->id }}">{{ $zone->name }}</option>
             @endforeach
           </select>
 
-          <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded form-select px-2 py-2 rounded-lg w-full md:w-1/3 md:ml-2 focus:outline-none" name="type">
+          <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 form-select rounded-lg w-full md:w-1/3 md:ml-2 focus:outline-none" name="type">
             <option value="empty">انتخاب نوع ملک</option>
             @foreach (\App\Models\Type::where('published', true)->get() as $type)
               <option value="{{ $type->id }}">{{ $type->name }}</option>
             @endforeach
           </select>
 
-          <select id="price" class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded form-select px-2 py-2 rounded-lg w-full md:w-1/3 md:ml-2 focus:outline-none" name="price">
+          <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 form-select rounded-lg w-full md:w-1/3 focus:outline-none" name="price" id="price">
             <option value="empty">انتخاب قیمت</option>
             @foreach (\App\Models\Price::where('published', true)->get() as $price)
               <option value="{{ $price->amount }}">{{ $price->amount }}</option>
@@ -38,7 +38,7 @@
         </div>
 
         <div>
-          <button class="bg-blue-500 px-3 py-2 rounded w-full my-2 text-white font-semibold text-lg">ارسال</button>
+          <button class="bg-primary px-3 py-2 rounded w-full my-2 text-white font-semibold text-lg">ارسال</button>
         </div>
       </form>
     </section>
