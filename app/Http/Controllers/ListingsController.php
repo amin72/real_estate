@@ -207,7 +207,6 @@ class ListingsController extends Controller
         $listing->update($request->only([
             'category_id', 'type_id', 'title', 'address', 'zipcode', 'zone_id',
             'description', 'price', 'price_monthly', 'bedrooms', 'area',
-            
             'has_store', 'has_garage', 'phone', 'image',
             'image_1', 'image_2', 'image_3', 'image_4', 'image_5',
         ]));
@@ -219,23 +218,25 @@ class ListingsController extends Controller
             $disk = 'public';
 
             $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $filename_thumb = time() . '_small.' . $image->getClientOriginalExtension();
-            $path = 'listings/' . $filename;
-            $path2 = 'listings/' . $filename_thumb;
-    
-            $img = \Image::make($image->getRealPath());
-            $thumb = \Image::make($image->getRealPath())
-                ->encode('jpg', 90)
-                ->resize(300, 300, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-    
-            \Storage::disk($disk)->put($path, $img->stream(), 'public');
-            \Storage::disk($disk)->put($path2, $thumb->stream(), 'public');
-    
-            $listing->image = 'storage/' . $path;
-            $listing->save();
+            if ($image) {
+                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $filename_thumb = time() . '_small.' . $image->getClientOriginalExtension();
+                $path = 'listings/' . $filename;
+                $path2 = 'listings/' . $filename_thumb;
+        
+                $img = \Image::make($image->getRealPath());
+                $thumb = \Image::make($image->getRealPath())
+                    ->encode('jpg', 90)
+                    ->resize(300, 300, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+        
+                \Storage::disk($disk)->put($path, $img->stream(), 'public');
+                \Storage::disk($disk)->put($path2, $thumb->stream(), 'public');
+        
+                $listing->image = 'storage/' . $path;
+                $listing->save();
+            }
     
             $image_fields = ['image_1', 'image_2', 'image_3', 'image_4', 'image_5', 'image_6'];
         

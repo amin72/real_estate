@@ -10,8 +10,6 @@
     <div class="w-full xl:w-1/2 mx-auto border-2 border-gray-200 rounded bg-white">
       <h1 class="text-3xl text-white bg-primary py-4 px-42 tracking-wide text-center">{{ $page_title }}</h1>
 
-      {{ $errors }}
-
       <form method="POST" action="{{ $method == 'POST' ? route('listings.store') : route('listings.update', $listing->id) }}" class="px-6 py-10" onsubmit="unFormatPrice()" enctype="multipart/form-data">
         @csrf
 
