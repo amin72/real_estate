@@ -106,7 +106,7 @@
     
     <div class="">
       <a class="" href="{{ route('pages.index') }}">
-        <img class="h-12" src="{{ asset('img/logo.png') }}" alt="">
+        <img class="h-16 w-24" src="{{ asset('img/logo.png') }}" alt="">
       </a>
     </div>
   </nav>
