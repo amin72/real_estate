@@ -10,6 +10,12 @@
     <div class="w-full xl:w-1/2 mx-auto border-2 border-gray-200 rounded bg-white">
       <h1 class="text-3xl text-white bg-primary py-4 px-42 tracking-wide text-center">{{ $page_title }}</h1>
 
+      <div class="my-4">
+        @if ($errors)
+          <p class="text-lg text-red-600">پر کردن فیلدهای ستاره دار الزامی است.</p>
+        @endif
+      </div>
+
       <form method="POST" action="{{ $method == 'POST' ? route('listings.store') : route('listings.update', $listing->id) }}" class="px-6 py-10" onsubmit="unFormatPrice()" enctype="multipart/form-data">
         @csrf
 
@@ -19,11 +25,11 @@
         
         <!-- title -->
         <div>
-          <label for="title">عنوان</label>
+          <label for="title">عنوان <span class="text-3xl text-black">*</span></label>
           <input
             type="text"
             name="title"
-            value="{{ $listing_title ?? old('title') }}"
+            value="{{ old('title') ?? $listing_title }}"
             class="block mt-1 w-full rounded"
             maxlength="30"
             required
