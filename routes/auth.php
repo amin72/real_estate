@@ -32,6 +32,10 @@ Route::post('/forgot-password', [PasswordResetController::class, 'store'])
     ->middleware('guest')
     ->name('password.phone');
 
+Route::post('/update-sms-token', [PasswordResetController::class, 'update'])
+    ->middleware('guest')
+    ->name('password.update-sms-token');
+
 Route::get('/verify_sms_token', [SMSTokenVerificationController::class, 'create'])
     ->middleware(['guest'])
     ->name('verify_sms_token');

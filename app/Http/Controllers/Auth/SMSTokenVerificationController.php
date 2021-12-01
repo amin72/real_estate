@@ -25,11 +25,21 @@ class SMSTokenVerificationController extends Controller
     {
         $phone = $request->session()->get('phone');
         $user = User::where('phone', $phone)->firstOrFail();
-        if ($user->sms_token == $request->sms_token) {
-            return redirect(route('password.reset'));
-        } else {
-            return back();
-        }
 
+        if ($user->sms_token === $request->sms_token) {
+            if (! $user->token_expired()) {
+                return redirect(route('password.reset'));
+            }
+
+            $validator = \Validator::make($request->all(), []);
+            $messages = $validator->errors();
+            $messages->add('sms_token.expired', 'کد وارد شده منقضی شده است.'); // Add the message
+            return back()->withErrors($messages)->withInput();
+        } else {
+            $validator = \Validator::make($request->all(), []);
+            $messages = $validator->errors();
+            $messages->add('sms_token', 'کد وارد شده صحیح نیست.'); // Add the message
+            return back()->withErrors($messages)->withInput();
+        }
     }
 }

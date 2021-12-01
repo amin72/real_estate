@@ -12,10 +12,13 @@
     <h1 class="mb-10 text-3xl text-white bg-primary py-4 px-42 tracking-wide text-center">تغییر رمز عبور</h1>
 
     <div class="mb-4 text-gray-600 px-4">
-      یه پیام حاوی توکن به شماره شما ارسال شد. توکن را در پایین وارد کنید.
+      یک پیام حاوی توکن به شماره شما ارسال شد. توکن را در پایین وارد کنید.
     </div>
 
-    <form method="POST" action="{{ route('verify_sms_token') }}" class="px-6 mb-10">
+    <form
+      method="POST"
+      action="{{ route('verify_sms_token') }}"
+      class="px-6 mb-10">
       @csrf
       
       <!-- SMS Token -->
@@ -31,9 +34,10 @@
           autofocus />
           
           @error('sms_token')
-            @if ($message == 'The phone format is invalid.')
-              @include('partials.error_message', ['message' => 'شماره تلفن را صحیح وارد کنید. مثال: 09301234567'])
-            @endif
+            @include('partials.error_message', ['message' => $message])
+          @enderror
+          @error('sms_token.expired')
+            @include('partials.error_message', ['message' => $message])
           @enderror
       </div>
   
@@ -43,6 +47,14 @@
         </button>
       </div>
     </form>
+
+    <form action="{{ route('password.update-sms-token') }}" method="POST" class="px-6 mb-10">
+      @csrf
+      <button type="submit" class="block text-gray-600 hover:text-gray-900 md:mt-0 focus:outline-none">
+        ارسال مجدد کد 
+      </button>
+    </form>
+
   </div>
 </main>
 

@@ -40,4 +40,15 @@ class PasswordResetController extends Controller
         $request->session()->put('phone', $request->phone);
         return redirect(route('verify_sms_token'));
     }
+
+
+    public function update(Request $request)
+    {
+        $phone = $request->session()->get('phone');
+        $user = User::where('phone', $phone)->firstOrFail();
+        $user->setSMSToken();
+        sendSMSToken($user->phone, $user->sms_token);
+        return redirect(route('verify_sms_token'));
+    }
+
 }

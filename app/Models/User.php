@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Carbon\Carbon;
+
 
 class User extends Authenticatable
 {
@@ -52,5 +54,10 @@ class User extends Authenticatable
         $this->sms_token = create_token();
         $this->sms_token_expires_at = next5Min();
         $this->save();
+    }
+
+
+    public function token_expired() {
+        return $this->sms_token_expires_at < Carbon::now();
     }
 }
