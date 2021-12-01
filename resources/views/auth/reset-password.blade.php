@@ -1,48 +1,65 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.app')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
+@section('title')
+  تغییر رمز عبور
+@endsection
 
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+@section('content')
+<main class="px-4 sm:px-32 md:px-40 lg:px-80 xl:px-96 my-16">
+  <div class="w-full xl:w-1/2 mx-auto border-2 border-gray-200 rounded bg-white">
+    <h1 class="mb-10 text-3xl text-white bg-primary py-4 px-42 tracking-wide text-center">تغییر رمز عبور</h1>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
-            </div>
+    <form method="POST" action="{{ route('password.update') }}" class="px-6 mb-10">
+      @csrf
+      
+      <!-- Password -->
+      <div class="mt-4">
+        <label for="password">رمز عبور جدید</label>
+        <input 
+          type="password"
+          name="password"
+          class="block mt-1 w-full rounded"
+          required
+          autocomplete="current-password" />
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+          @error('password')
+            @if ($message == 'The password confirmation does not match.')
+              @include('partials.error_message', ['message' => 'رمز عبورهای وارد شده برابر نیستند.'])
+            @endif
 
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-            </div>
+            @if ($message == 'The password must be at least 8 characters.')
+              @include('partials.error_message', ['message' => 'رمزهای وارد شده بسیار کوتاه است. حداقل طول باید ۸ کاراکتر باشد.'])
+            @endif
+          @enderror
+          
+      </div>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+      <!-- Confirm Password -->
+      <div class="mt-4">
+        <label for="password_confirmation">تکرار رمز عبور</label>
+        <input 
+          type="password"
+          name="password_confirmation"
+          class="block mt-1 w-full rounded"
+          required
+          autocomplete="current-password" />
+      </div>
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-            </div>
+    
+      <div class="flex flex-col mt-4">
+        <button class="block px-4 py-2 text-white rounded bg-secondary font-semibold tracking-wide">
+          ارسال
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Reset Password') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+<!-- Session Status -->
+<!-- <x-auth-session-status class="mb-4" :status="session('status')" /> -->
+
+<!-- Validation Errors -->
+<!-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> -->
+@endsection

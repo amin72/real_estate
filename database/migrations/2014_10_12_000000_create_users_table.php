@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name', 40);
             $table->string('phone', 11)->unique();
             $table->string('password');
+            $table->string('sms_token', 6)->nullable();
+            $table->dateTime('sms_token_expires_at')->nullable();
             $table->rememberToken();
             $table->boolean('is_admin')->default(false);
             $table->timestamps();

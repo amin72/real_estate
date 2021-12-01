@@ -46,4 +46,11 @@ class User extends Authenticatable
     public function listings() {
         return $this->hasMany(\App\Models\Listing::class);
     }
+
+
+    public function setSMSToken() {
+        $this->sms_token = create_token();
+        $this->sms_token_expires_at = next5Min();
+        $this->save();
+    }
 }

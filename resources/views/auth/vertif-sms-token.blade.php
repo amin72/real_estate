@@ -2,7 +2,7 @@
 
 
 @section('title')
-  تغییر رمز عبور
+  ارسال توکن تغییر رمز
 @endsection
 
 
@@ -12,33 +12,25 @@
     <h1 class="mb-10 text-3xl text-white bg-primary py-4 px-42 tracking-wide text-center">تغییر رمز عبور</h1>
 
     <div class="mb-4 text-gray-600 px-4">
-      اگر رمز عبور خود را فراموش کرده اید، شماره تماس خود که موقع ثبت نام استفاده کرده اید را در پایین وارد کنید.
+      یه پیام حاوی توکن به شماره شما ارسال شد. توکن را در پایین وارد کنید.
     </div>
 
-    @error('phone')
-      @if ($message == 'These credentials do not match our records.')
-        <div class="px-6 mt-4 mb-4 text-red-600">
-          @include('partials.error_message', ['message' => 'اطلاعات وارد شده صحیح نیستند. لطفا دوباره امتحان کنید.'])
-        </div>
-      @endif
-    @enderror
-
-    <form method="POST" action="{{ route('password.phone') }}" class="px-6 mb-10">
+    <form method="POST" action="{{ route('verify_sms_token') }}" class="px-6 mb-10">
       @csrf
       
-      <!-- Phone number -->
+      <!-- SMS Token -->
       <div>
-        <label for="phone">شماره تلفن</label>
+        <label for="sms_token">توکن</label>
         <input
           type="text"
-          name="phone"
-          value="{{ old('phone') }}"
+          name="sms_token"
+          value="{{ old('sms_token') }}"
           class="block mt-1 w-full rounded"
-          placehoder="09301234567"
+          maxlength="6"
           required
           autofocus />
           
-          @error('phone')
+          @error('sms_token')
             @if ($message == 'The phone format is invalid.')
               @include('partials.error_message', ['message' => 'شماره تلفن را صحیح وارد کنید. مثال: 09301234567'])
             @endif
