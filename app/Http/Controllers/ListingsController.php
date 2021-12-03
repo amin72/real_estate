@@ -9,6 +9,18 @@ use App\Http\Requests\ListingUserRequest;
 
 class ListingsController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth', [
+            'only' => [
+                'create',
+                'store',
+                'edit',
+                'update',
+                'destroy'
+            ]
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -66,6 +78,7 @@ class ListingsController extends Controller
             'listing_category' => '',
             'listing_type' => '',
             'listing_zone' => '',
+            'listing_phone' => '',
             'image_required' => true,
             'method' => 'POST',
         ]);
