@@ -30,7 +30,7 @@ class CreateListingsTable extends Migration
 
             $table->string('title', 30);
             $table->string('address', 200);
-            $table->string('zipcode', 10);
+            $table->string('zipcode', 10)->nullable();
             $table->text('description')->nullable();
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('price_monthly')->default(0);

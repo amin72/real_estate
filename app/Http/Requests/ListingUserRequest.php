@@ -26,7 +26,6 @@ class ListingUserRequest extends FormRequest
         return [
             'title' => 'required|max:30',
             'address' => 'required|max:200',
-            'zipcode' => 'required|max:10',
             'price' => 'required|integer',
             'price_monthly' => 'required|integer',
             'bedrooms' => 'required|integer',
