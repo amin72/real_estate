@@ -10,13 +10,18 @@
     <div class="w-full xl:w-1/2 mx-auto border-2 border-gray-200 rounded bg-white">
       <h1 class="text-3xl text-white bg-primary py-4 px-42 tracking-wide text-center">{{ $page_title }}</h1>
 
-      <div class="my-4">
+      <div class="px-6 mt-6">
         @if ($errors)
           <p class="text-lg text-red-600">پر کردن فیلدهای ستاره دار الزامی است.</p>
         @endif
       </div>
 
-      <form method="POST" action="{{ $method == 'POST' ? route('listings.store') : route('listings.update', $listing->id) }}" class="px-6 py-10" onsubmit="unFormatPrice()" enctype="multipart/form-data">
+      <form
+        method="POST"
+        action="{{ $method == 'POST' ? route('listings.store') : route('listings.update', $listing->id) }}"
+        class="px-6 mb-10 mt-4"
+        onsubmit="change()"
+        enctype="multipart/form-data">
         @csrf
 
         @if ($method === 'PUT')
@@ -32,11 +37,7 @@
             value="{{ old('title') ?? $listing_title }}"
             class="block mt-1 w-full rounded"
             maxlength="30"
-            required
-            @if (! $listing_title)
-              autofocus
-            @endif
-            >
+            required>
 
             @error('title')
               @if ($message == 'The title must not be greater than 30 characters.')
@@ -47,7 +48,7 @@
         
         <!-- zone -->
         <div class="block mt-6">
-          <span>انتخاب منطقه</span>
+          <span>انتخاب منطقه</span> <span class="text-3xl text-black">*</span>
           <div>
             <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded" name="zone_id" required>
               <option value="empty">-----</option>
@@ -67,9 +68,9 @@
           @enderror
         </div>
 
-                <!-- Categories -->
-                <div class="block mt-6">
-          <span>دسته بندی</span>
+        <!-- Categories -->
+        <div class="block mt-6">
+          <span>دسته بندی</span> <span class="text-3xl text-black">*</span>
           <div>
             <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded" name="category_id" id="category_id" required>
               <option value="empty">-----</option>
@@ -91,7 +92,7 @@
 
         <!-- Types -->
         <div class="block mt-6">
-          <span>نوع ملک</span>
+          <span>نوع ملک</span> <span class="text-3xl text-black">*</span>
           <div>
             <select class="form-select appearance-none bg-left px-4 py-3 w-full my-2 rounded" name="type_id" required>
               <option value="empty">-----</option>
@@ -113,12 +114,12 @@
         
         <!-- Address -->
         <div class="mt-4">
-          <label for="address">آدرس</label>
+          <label for="address">آدرس <span class="text-3xl text-black">*</span></label>
           <input
             type="text"
             name="address"
             class="block mt-1 w-full rounded"
-            value="{{ $listing_address ?? old('address') }}"
+            value="{{ old('address') ?? $listing_address }}"
             required>
 
             @error('address')
@@ -126,38 +127,37 @@
                 @include('partials.error_message', ['message' => 'آدرس حداکثر می تواند ۲۰۰ کاراکتر باشد.'])
               @endif
             @enderror
-
         </div>
 
         <!-- Zipcode -->
         <div class="mt-4">
-          <label for="zipcode">کد پستی (بدون خط فاصله)</label>
+          <label for="zipcode">کد پستی (بدون خط فاصله - اختیاری)</label>
           <input
             type="text"
             name="zipcode"
+            id="zipcode"
             class="block mt-1 w-full rounded"
             minlength="10"
             maxlength="10"
-            value="{{ $listing_zipcode ?? old('zipcode') }}"
-            required>
+            value="{{ old('zipcode') ?? $listing_zipcode }}">
         </div>
 
         <!-- Price -->
         <div class="mt-4">
-          <label for="price">قیمت (تومان)</label>
+          <label for="price">قیمت (تومان) <span class="text-3xl text-black">*</span></label>
           <input
             type="text"
             id="price"
             name="price"
             class="block mt-1 w-full rounded tracking-widest"
             onkeyup="formatInputPrice(this)"
-            value="{{ $listing_price ?? old('price') }}"
+            value="{{ old('price') ?? $listing_price }}"
             required>
         </div>
 
         <!-- Price Monthly -->
         <div class="mt-4 hidden" id="price_monthly_div">
-          <label for="price_monthly">اجاره ماهانه (تومان)</label>
+          <label for="price_monthly">اجاره ماهانه (تومان) <span class="text-3xl text-black">*</span></label>
           <input
             type="text"
             id="price_monthly"
@@ -170,10 +170,11 @@
 
         <!-- Bedrooms -->
         <div class="mt-4">
-          <label for="bedrooms">تعداد اتاق خواب</label>
+          <label for="bedrooms">تعداد اتاق خواب <span class="text-3xl text-black">*</span></label>
           <input
-            type="number"
+            type="text"
             name="bedrooms"
+            id="bedrooms"
             class="block mt-1 w-full rounded"
             value="{{ $listing_bedrooms ?? old('bedrooms') }}"
             required>
@@ -181,10 +182,11 @@
 
         <!-- Area -->
         <div class="mt-4">
-          <label for="area">متراژ</label>
+          <label for="area">متراژ <span class="text-3xl text-black">*</span></label>
           <input
-            type="number"
+            type="text"
             name="area"
+            id="area"
             class="block mt-1 w-full rounded"
             value="{{ $listing_area ?? old('area') }}"
             required>
@@ -262,14 +264,15 @@
 
         <!-- Phone number -->
         <div class="mt-4">
-          <label for="phone">شماره تلفن</label>
+          <label for="phone">شماره تلفن <span class="text-3xl text-black">*</span></label>
           <input
             type="text"
             name="phone"
+            id="phone"
             class="block mt-1 w-full rounded"
             minlength="11"
             maxlength="11"
-            value="{{ $listing_phone ?? old('phone') }}"
+            value="{{ old('phone') ?? $listing_phone }}"
             required>
 
           @error('phone')
