@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(4)->create();
-        // $this->call(CategoryTableSeeder::class);
-        // $this->call(TypeTableSeeder::class);
-        // $this->call(ZoneTableSeeder::class);
-        // $this->call(PriceTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
+        $this->call(TypeTableSeeder::class);
+        $this->call(ZoneTableSeeder::class);
+        $this->call(PriceTableSeeder::class);
         $this->call(ManagerInfoTableSeeder::class);
         
         // \App\Models\Listing::unsetEventDispatcher();
