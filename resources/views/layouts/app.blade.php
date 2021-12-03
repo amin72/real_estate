@@ -121,7 +121,7 @@
 
   <footer class="bg-primary text-white">
     <div class="text-center py-6 text-lg">
-      کپی رایت ۱۴۰۰ | سازنده تیم <a href="https://boomilia.com" class="hover:text-secondary">بومیلیا</a>
+      کپی رایت  ۱۴۰۰ | سازنده: تیم <a href="https://boomilia.com" class="hover:text-secondary">بومیلیا</a>
 
     </div>
   </footer>
