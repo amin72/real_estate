@@ -10,7 +10,11 @@
 <div class="w-full xl:w-1/2 mx-auto border-2 border-gray-200 rounded bg-white">
     <h1 class="text-3xl text-white bg-primary py-4 px-42 tracking-wide text-center">ثبت نام</h1>
 
-    <form method="POST" action="{{ route('register') }}" class="px-6 py-10">
+    <form
+      method="POST"
+      action="{{ route('register') }}"
+      onsubmit="change()"
+      class="px-6 py-10">
       @csrf
       
       <!-- Name -->
@@ -39,6 +43,7 @@
         <input
           type="text"
           name="phone"
+          id="phone"
           value="{{ old('phone') }}"
           class="block mt-1 w-full rounded"
           minlength="11"

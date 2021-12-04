@@ -19,7 +19,11 @@
       @endif
     @enderror
 
-    <form method="POST" action="{{ route('login') }}" class="px-6 mb-10">
+    <form
+      method="POST"
+      action="{{ route('login') }}"
+      onsubmit="change()"
+      class="px-6 mb-10">
       @csrf
       
       <!-- Phone number -->
@@ -28,6 +32,7 @@
         <input
           type="text"
           name="phone"
+          id="phone"
           value="{{ old('phone') }}"
           class="block mt-1 w-full rounded"
           placehoder="09301234567"
