@@ -36,7 +36,7 @@ class NewPasswordController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'min:5', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $phone = $request->session()->get('phone');
