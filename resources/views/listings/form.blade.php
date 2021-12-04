@@ -254,6 +254,38 @@
           </label>
         </div>
 
+
+        <!-- Has elevator -->
+        <div class="block mt-6">
+          <span class="ml-12">آسانسور دارد؟</span>
+
+          <label for="has_elevator" class="inline-flex items-center">
+            <span class="ml-2 text-gray-800">بله</span>
+            <input
+              type="radio"
+              name="has_elevator"
+              value="1"
+              class="border-gray-300 text-indigo-600 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border border-indigo-400 p-2"
+              @if ($listing_has_elevator)
+                checked='checked'
+              @endif
+            >
+          </label>
+
+          <label for="has_elevator" class="inline-flex items-center mr-10">
+            <span class="ml-2 text-gray-800">خیر</span>
+            <input
+              type="radio"
+              name="has_elevator"
+              value="0"
+              class="border-gray-300 text-indigo-600 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border border-indigo-400 p-2"
+              @if (! $listing_has_elevator)
+                checked='checked'
+              @endif
+            >
+          </label>
+        </div>
+
         <!-- Description -->
         <div class="mt-4">
           <label for="description">توضیحات</label>

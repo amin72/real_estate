@@ -72,6 +72,7 @@ class ListingsController extends Controller
             'listing_bedrooms' => '',
             'listing_has_store' => '',
             'listing_has_garage' => '',
+            'listing_has_elevator' => '',
             'listing_area' => '',
             'listing_requested' => '',
             'listing_exchange' => '',
@@ -97,7 +98,7 @@ class ListingsController extends Controller
         $listing = Listing::create($request->only([
             'category_id', 'type_id', 'title', 'address', 'zipcode', 'zone_id',
             'description', 'price', 'price_monthly', 'bedrooms', 'area',
-            'has_store', 'has_garage', 'phone', 'image',
+            'has_store', 'has_garage', 'has_elevator', 'phone', 'image',
             'image_1', 'image_2', 'image_3', 'image_4', 'image_5',
         ]));
 
@@ -190,6 +191,7 @@ class ListingsController extends Controller
             'listing_bedrooms' => $listing->bedrooms,
             'listing_has_store' => $listing->has_store,
             'listing_has_garage' => $listing->has_garage,
+            'listing_has_elevator' => $listing->has_elevator,
             'listing_requested' => $listing->requested,
             'listing_exchange' => $listing->exchange,
             'listing_area' => $listing->area,
@@ -220,7 +222,7 @@ class ListingsController extends Controller
         $listing->update($request->only([
             'category_id', 'type_id', 'title', 'address', 'zipcode', 'zone_id',
             'description', 'price', 'price_monthly', 'bedrooms', 'area',
-            'has_store', 'has_garage', 'phone', 'image',
+            'has_store', 'has_garage', 'has_elevator', 'phone', 'image',
             'image_1', 'image_2', 'image_3', 'image_4', 'image_5',
         ]));
 

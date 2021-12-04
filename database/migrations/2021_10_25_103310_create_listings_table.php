@@ -37,6 +37,7 @@ class CreateListingsTable extends Migration
             $table->unsignedTinyInteger('bedrooms');
             $table->boolean('has_store');
             $table->boolean('has_garage');
+            $table->boolean('has_elevator');
             $table->unsignedInteger('area');
             $table->string('phone', 11);
             $table->boolean('requested')->default(false);

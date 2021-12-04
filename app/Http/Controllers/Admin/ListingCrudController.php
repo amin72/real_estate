@@ -78,6 +78,7 @@ class ListingCrudController extends CrudController
         CRUD::field('bedrooms')->type('number');
         CRUD::field('has_store');
         CRUD::field('has_garage');
+        CRUD::field('has_elevator')->type('boolean');
         CRUD::field('area')->type('number');
         CRUD::field('published')->type('boolean');
         CRUD::field('agent_name');
