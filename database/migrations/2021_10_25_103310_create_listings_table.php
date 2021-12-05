@@ -54,6 +54,8 @@ class CreateListingsTable extends Migration
             // only visible for admin
             $table->string('agent_name', 40)->default('');
             $table->boolean('published')->default(false);
+            $table->boolean('is_sold')->default(false);
+            $table->dateTime('sold_date')->nullable();
 
             $table->timestamps();
         });

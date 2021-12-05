@@ -81,6 +81,10 @@ class ListingCrudController extends CrudController
         CRUD::field('has_elevator')->type('boolean');
         CRUD::field('area')->type('number');
         CRUD::field('published')->type('boolean');
+        
+        CRUD::field('is_sold')->type('boolean');
+        CRUD::field('sold_datetime')->type('date');
+
         CRUD::field('agent_name');
         CRUD::field('requested')->type('boolean');
         CRUD::field('exchange')->type('boolean');
