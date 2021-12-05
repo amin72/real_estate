@@ -55,6 +55,10 @@
             @if ($message == 'The phone format is invalid.')
               @include('partials.error_message', ['message' => 'شماره تلفن را صحیح وارد کنید. مثال: 09301234567'])
             @endif
+            
+            @if ($message == 'The phone has already been taken.')
+              @include('partials.error_message', ['message' => 'با این شماره تلفن قبلا ثبت نام کرده اید.'])
+            @endif
           @enderror
       </div>
       
@@ -73,8 +77,8 @@
               @include('partials.error_message', ['message' => 'رمز عبورهای وارد شده برابر نیستند.'])
             @endif
 
-            @if ($message == 'The password must be at least 8 characters.')
-              @include('partials.error_message', ['message' => 'رمزهای وارد شده بسیار کوتاه است. حداقل طول باید ۸ کاراکتر باشد.'])
+            @if ($message == 'The password must be at least 5 characters.')
+              @include('partials.error_message', ['message' => 'رمزهای وارد شده بسیار کوتاه است. حداقل طول باید ۵ کاراکتر باشد.'])
             @endif
           @enderror
           
