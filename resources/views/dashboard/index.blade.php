@@ -12,7 +12,7 @@
     <h2 class="text-center text-2xl text-white bg-primary py-4 overflow-hidden">املاک ثبت شده توسط شما</h2>
 
     <div class="my-10 px-10">
-      @if ($listings)
+      @if ($listings->count() > 0)
         <ul class="list-decimal font-semibold">
           @foreach($listings as $listing)
             <li class="py-4">
@@ -37,6 +37,8 @@
             </li>
           @endforeach
         </ul>
+      @else
+        <p class="text-lg text-center">هنوز هیچ آگهی توسط شما در سایت ثبت نشده است.</p>
       @endif
     </div>
   </div>
