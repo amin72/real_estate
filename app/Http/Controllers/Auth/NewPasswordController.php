@@ -22,7 +22,12 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request)
     {
-        return view('auth.reset-password', ['request' => $request]);
+        $token_is_ok = $request->session()->get('token_is_ok');
+        if ($token_is_ok) {
+            return view('auth.reset-password', ['request' => $request]);
+        }
+
+        return redirect(route('password.request'));
     }
 
     /**
@@ -40,9 +45,15 @@ class NewPasswordController extends Controller
         ]);
 
         $phone = $request->session()->get('phone');
-        $user = User::where('phone', $phone)->firstOrFail();
-        $user->password = Hash::make($request->password);
-        $user->save();
-        return redirect(route('login'))->with('success', 'رمز عبور با موفقیت تغییر کرد.');
+        $token_is_ok = $request->session()->get('token_is_ok');
+
+        if ($token_is_ok) {
+            $user = User::where('phone', $phone)->firstOrFail();
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return redirect(route('login'))->with('success', 'رمز عبور با موفقیت تغییر کرد.');
+        } else {
+            return redirect(route('password.forgot'));
+        }
     }
 }

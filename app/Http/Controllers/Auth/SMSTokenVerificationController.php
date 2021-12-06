@@ -28,6 +28,7 @@ class SMSTokenVerificationController extends Controller
 
         if ($user->sms_token === $request->sms_token) {
             if (! $user->token_expired()) {
+                $request->session()->put('token_is_ok', true);
                 return redirect(route('password.reset'));
             }
 
