@@ -32,7 +32,7 @@ class TypeCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Type::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/type');
-        CRUD::setEntityNameStrings('type', 'types');
+        CRUD::setEntityNameStrings('نوع', 'انواع');
     }
 
     /**
@@ -43,9 +43,8 @@ class TypeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('slug');
-        CRUD::column('published')->type('boolean');
+        CRUD::column('name')->label(trans('backpack.name'));
+        CRUD::column('published')->type('boolean')->label(trans('backpack.published'));
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -64,9 +63,9 @@ class TypeCrudController extends CrudController
     {
         CRUD::setValidation(TypeRequest::class);
 
-        CRUD::field('name');
-        CRUD::field('slug');
-        CRUD::field('published');
+        CRUD::field('name')->label(trans('backpack.name'));
+        CRUD::field('slug')->label(trans('backpack.اسلاگ'));
+        CRUD::field('published')->label(trans('backpack.published'));
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -85,8 +84,8 @@ class TypeCrudController extends CrudController
     {
         CRUD::setValidation(TypeUpdateRequest::class);
 
-        CRUD::field('name');
-        CRUD::field('slug');
-        CRUD::field('published');
+        CRUD::field('name')->label(trans('backpack.name'));
+        CRUD::field('slug')->label(trans('backpack.slug'));
+        CRUD::field('published')->label(trans('backpack.published'));
     }
 }

@@ -28,7 +28,7 @@ class ManagerInfoCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\ManagerInfo::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/manager-info');
-        CRUD::setEntityNameStrings('Manager Info', 'Manager Info');
+        CRUD::setEntityNameStrings('اطلاعات مدیر سایت', 'اطلاعات مدیر سایت');
     }
 
     /**
@@ -39,43 +39,20 @@ class ManagerInfoCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('phone');
-        CRUD::column('mobile');
-        CRUD::column('whatsapp');
-        CRUD::column('email');
-        CRUD::column('instagram');
-        CRUD::column('telegram');
+        $this->crud->removeButton('create');
+
+        CRUD::column('name')->label(trans('backpack.name'));
+        CRUD::column('phone')->label(trans('backpack.phone'));
+        CRUD::column('mobile')->label(trans('backpack.mobile'));
+        CRUD::column('whatsapp')->label(trans('backpack.whatsapp'));
+        CRUD::column('email')->label(trans('backpack.email'));
+        CRUD::column('instagram')->label(trans('backpack.instagram'));
+        CRUD::column('telegram')->label(trans('backpack.telegram'));
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
-    }
-
-    /**
-     * Define what happens when the Create operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-create
-     * @return void
-     */
-    protected function setupCreateOperation()
-    {
-        CRUD::setValidation(ManagerInfoRequest::class);
-
-        CRUD::field('name');
-        CRUD::field('phone');
-        CRUD::field('mobile');
-        CRUD::field('whatsapp');
-        CRUD::field('email');
-        CRUD::field('instagram');
-        CRUD::field('telegram');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
          */
     }
 
@@ -87,6 +64,16 @@ class ManagerInfoCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        CRUD::setValidation(ManagerInfoRequest::class);
+
+        CRUD::field('name')->label(trans('backpack.name'));
+        CRUD::field('phone')->label(trans('backpack.phone'));
+        CRUD::field('mobile')->label(trans('backpack.mobile'));
+        CRUD::field('whatsapp')->label(trans('backpack.whatsapp'));
+        CRUD::field('email')->label(trans('backpack.email'));
+        CRUD::field('instagram')->label(trans('backpack.instagram'));
+        CRUD::field('telegram')->label(trans('backpack.telegram'));
+
+
     }
 }

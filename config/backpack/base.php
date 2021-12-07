@@ -17,7 +17,7 @@ return [
 
     // Direction, according to language
     // (left-to-right vs right-to-left)
-    'html_direction' => 'ltr',
+    'html_direction' => 'rtl',
 
     // ----
     // HEAD
@@ -255,7 +255,7 @@ return [
     // The Backpack default is the same as the Laravel default (email)
     // If you need to switch to username, you also need to create that column in your db
     'authentication_column'      => 'phone',
-    'authentication_column_name' => 'Phone number',
+    'authentication_column_name' => 'شماره تلفن',
 
     // The guard that protects the Backpack admin panel.
     // If null, the config.auth.defaults.guard value will be used.

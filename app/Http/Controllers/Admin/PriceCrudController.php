@@ -28,7 +28,7 @@ class PriceCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Price::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/price');
-        CRUD::setEntityNameStrings('price', 'prices');
+        CRUD::setEntityNameStrings('قیمت', 'قیمت ها');
     }
 
     /**
@@ -39,8 +39,8 @@ class PriceCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('amount');
-        CRUD::column('published');
+        CRUD::column('amount')->label(trans('backpack.amount'));
+        CRUD::column('published')->type('boolean')->label(trans('backpack.published'));
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -59,8 +59,8 @@ class PriceCrudController extends CrudController
     {
         CRUD::setValidation(PriceRequest::class);
 
-        CRUD::field('amount');
-        CRUD::field('published');
+        CRUD::field('amount')->label(trans('backpack.amount'));
+        CRUD::field('published')->label(trans('backpack.published'));
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

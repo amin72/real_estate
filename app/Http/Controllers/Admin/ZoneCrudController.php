@@ -29,7 +29,7 @@ class ZoneCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Zone::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/zone');
-        CRUD::setEntityNameStrings('zone', 'zones');
+        CRUD::setEntityNameStrings('منطقه', 'مناطق');
     }
 
     /**
@@ -40,8 +40,8 @@ class ZoneCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::field('published')->type('boolean');
+        CRUD::column('name')->label(trans('backpack.name'));
+        CRUD::field('published')->type('boolean')->label(trans('backpack.published'));
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -60,8 +60,8 @@ class ZoneCrudController extends CrudController
     {
         CRUD::setValidation(ZoneCreateRequest::class);
 
-        CRUD::field('name');
-        CRUD::field('published')->type('boolean');
+        CRUD::field('name')->label(trans('backpack.name'));
+        CRUD::field('published')->type('boolean')->label(trans('backpack.published'));
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -80,7 +80,7 @@ class ZoneCrudController extends CrudController
     {
         CRUD::setValidation(ZoneUpdateRequest::class);
 
-        CRUD::field('name');
-        CRUD::field('published')->type('boolean');
+        CRUD::field('name')->label(trans('backpack.name'));
+        CRUD::field('published')->type('boolean')->label(trans('backpack.published'));
     }
 }
