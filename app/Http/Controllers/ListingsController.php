@@ -31,6 +31,8 @@ class ListingsController extends Controller
         $zone_id = $request->zone == 'empty' ? '' : $request->zone;
         $type_id = $request->type== 'empty' ? '' : $request->type;
         $price = $request->price == 'empty' ? '' : $request->price;
+        $requested = $request->requested == 'on';
+        $keyword = $request->keyword;
 
         $listings = Listing::where('published', true);
         
@@ -45,8 +47,18 @@ class ListingsController extends Controller
         if ($price) {
             $listings->where('price', '<=', $price);
         }
+        
+        if ($requested) {
+            $listings->where('requested', true);
+        }
 
-        $listings = $listings->orderBy('created_at')->paginate(12);
+        if ($keyword) {
+            $listings->whereRaw(
+                "MATCH(description) AGAINST(?)", 
+                array($keyword))->get();
+        }
+
+        $listings = $listings->orderBy('created_at', 'desc')->paginate(12);
         
         return view('listings.index', [
             'listings' => $listings

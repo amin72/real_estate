@@ -36,8 +36,29 @@
             @endforeach
           </select>
         </div>
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="w-2/3">
+            <input
+              type="text"
+              name="keyword"
+              class="block mt-1 w-full rounded-lg text-sm py-3"
+              placeholder="عبارت مورد نظر خود را وارد کنید..."
+              maxlength="100">
+          </div>
+        
+          <div class="w-1/3 py-3 md:pr-2">
+            <label for="requested" class="mr-1 flex items-center">
+              <span class="ml-1">جستجوی آگهی های درخواستی</span>
+              <input
+                type="checkbox"
+                name="requested"
+                id="requested"
+                class="block rounded border-gray-300 text-indigo-600 shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50 border border-indigo-400 p-2">
+            </label>
+          </div>
+        </div>
 
-        <div>
+        <div class="md:mt-4">
           <button class="bg-primary px-3 py-2 rounded w-full my-2 text-white font-semibold text-lg">ارسال</button>
         </div>
       </form>
