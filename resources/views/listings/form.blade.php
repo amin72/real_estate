@@ -137,8 +137,6 @@
             name="zipcode"
             id="zipcode"
             class="block mt-1 w-full rounded"
-            minlength="10"
-            maxlength="10"
             value="{{ old('zipcode') ?? $listing_zipcode }}">
         </div>
 
