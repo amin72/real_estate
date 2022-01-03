@@ -59,7 +59,7 @@
         </div>
 
         <div class="md:mt-4">
-          <button class="bg-primary px-3 py-2 rounded w-full my-2 text-white font-semibold text-lg">ارسال</button>
+          <button class="bg-primary px-3 py-2 rounded w-full my-2 text-white font-semibold text-lg">جستجو</button>
         </div>
       </form>
     </section>
