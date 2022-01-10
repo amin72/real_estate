@@ -18,9 +18,11 @@ Route::resource('listings', ListingsController::class);
 // Route::name('dashboard.')->middleware(['auth'])->group(function() {
 Route::name('dashboard.')->group(function() {
     Route::get('dashboard', [DashboardController::class, 'index'])
+        ->middleware('auth')
         ->name('index');
 
     Route::put('dashboard/{id}', [DashboardController::class, 'update'])
+        ->middleware('auth')
         ->name('update');
 });
 
